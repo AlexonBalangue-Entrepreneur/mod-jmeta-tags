@@ -625,12 +625,6 @@
 					label="URL web apps (Google Chrome)"
 					description="JFIELD_MOD_METATAGS_URL_APPS_GOOGLECHROME_DESC" />
 				<field 
-					type="text"
-					name="langsapps"
-					default=""
-					label="MOD_TWITTERMETAPPS_LANGS_LABEL"
-					description="MOD_TWITTERMETAPPS_LANGS_DESC" />
-				<field 
 					type="spacer"
 					hr="true" />	
 				<field 

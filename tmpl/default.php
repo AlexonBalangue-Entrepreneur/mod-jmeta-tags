@@ -15,115 +15,12 @@ defined('_JEXEC') or die;
 <?php
 /*********************[ JSON LD ]************************/
 if($jsonLD_type == 'json-ld-person'){
-$docs->addScriptDeclaration('{
-		"@context": "http://schema.org",
-		"@type": "Person",
-		"honorificPrefix": "'.$JsonLD_person_honorificPrefix.'",
-		"name": "'.$JsonLD_person_name.'",
-		"birthDate": "'.$JsonLD_person_birthDate.'",
-		"faxNumber": "'.$JsonLD_person_faxNumber.'",
-		"gender": "'.$JsonLD_person_gender.'",
-		"telephone": "'.$JsonLD_person_telephone.'",
-		"description": "'.$desciption.'",
-		"image": "'.$JsonLD_person_mediaimage.'",
-		"url": "'.JURI::base().'",
-		"address": {
-			"@type": "PostalAddress",
-			"streetAddress": "'.$CoB_StreetAddress.'",
-			"addressLocality": "'.$CoB_City.'",
-			"postalCode": "'.$CoB_Zipcode.'",
-			"addressContry": "'.$CoB_Country.'"
-		}
-	}', 'application/ld+json');
+$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "Person","honorificPrefix": "'.$JsonLD_person_honorificPrefix.'","name": "'.$JsonLD_person_name.'","birthDate": "'.$JsonLD_person_birthDate.'","faxNumber": "'.$JsonLD_person_faxNumber.'","gender": "'.$JsonLD_person_gender.'","telephone": "'.$JsonLD_person_telephone.'","description": "'.$desciption.'","image": "'.$JsonLD_person_mediaimage.'","url": "'.JURI::base().'","address": {"@type": "PostalAddress","streetAddress": "'.$CoB_StreetAddress.'","addressLocality": "'.$CoB_City.'","postalCode": "'.$CoB_Zipcode.'","addressContry": "'.$CoB_Country.'"}}', 'application/ld+json');
 }
 
 if($jsonLD_type == 'json-ld-organisation'){
-$docs->addScriptDeclaration('{
-	"@context": "http://schema.org",
-	"@type": "Organization",
-	"brand": "'.$sitename.'",
-	"legalName": "'.$JsonLD_organisation_legalName.'",
-	"founder": "'.$JsonLD_organisation_founder.'",
-	"foundingDate": "'.$JsonLD_organisation_foundingDate.'",
-	"logo": "'.$JsonLD_organisation_medialogo.'",
-	"faxNumber": "'.$JsonLD_organisation_fax.'",
-	"taxID": "'.$JsonLD_organisation_taxID.'",
-	"vatID": "'.$JsonLD_organisation_vatID.'",
-	"telephone": "'.$JsonLD_organisation_telephone.'",
-	"description": "'.$desciption.'",
-	"image": "'.$JsonLD_organisation_medialogo.'",
-	"url": "'.JURI::base().'",
-	"address": { 
-		"@type": "PostalAddress",
-		"streetAddress": "'.$CoB_StreetAddress.'",
-		"addressLocality": "'.$CoB_City.'",
-		"postalCode": "'.$CoB_Zipcode.'",
-		"addressContry": "'.$CoB_Country.'" 
-	},
-	"numberOfEmployees": { 
-		"@type": "QuantitativeValue",
-		"minValue": "'.$JsonLD_organisation_minValue.'",
-		"maxValue": "'.$JsonLD_organisation_maxValue.'"
-	},
-	"openingHoursSpecification": [ { 
-		"@type": "OpeningHoursSpecification",
-		"dayOfWeek": [
-			"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" 
-		],
-		"opens": "09:00",
-		"closes": "18:00" 
-	}],
-	"contactPoint": [{ 
-		"@type": "ContactPoint", 
-		"telephone": "'.$JsonLD_organisation_telephone.'",
-		"contactType": "customer service",
-		"contactOption": "TollFree",
-		"areaServed": "FR" 
-	},{
-		"@type": "ContactPoint",
-		"telephone": "'.$JsonLD_organisation_telephone.'",
-		"contactType": "emergency",
-		"contactOption": [ 
-			"HearingImpairedSupported", "TollFree" 
-		], 
-		"areaServed": "FR" 
-	},{ 
-		"@type": "ContactPoint", 
-		"telephone": "+33699119497", 
-		"contactType": "technical support", 
-		"contactOption": "TollFree", 
-		"areaServed": [  "GB", "FR" ], 
-		"availableLanguage": ["English","French"]
-	}]
-}', 'application/ld+json');}
-$docs->addScriptDeclaration('{
-	"@context": "http://schema.org",
-	"@type": "Organization",
-	"brand": "'.$sitename.'",
-	"legalName": "'.$JsonLD_organisation_legalName.'",
-	"founder": "'.$JsonLD_organisation_founder.'",
-	"foundingDate": "'.$JsonLD_organisation_foundingDate.'",
-	"logo": "'.$JsonLD_organisation_medialogo.'",
-	"faxNumber": "'.$JsonLD_organisation_fax.'",
-	"taxID": "'.$JsonLD_organisation_taxID.'",
-	"vatID": "'.$JsonLD_organisation_vatID.'",
-	"telephone": "'.$JsonLD_organisation_telephone.'",
-	"description": "'.$desciption.'",
-	"image": "'.$JsonLD_organisation_medialogo.'",
-	"url": "'.JURI::base().'",
-	"address": { 
-		"@type": "PostalAddress",
-		"streetAddress": "'.$CoB_StreetAddress.'",
-		"addressLocality": "'.$CoB_City.'",
-		"postalCode": "'.$CoB_Zipcode.'",
-		"addressContry": "'.$CoB_Country.'"
-	},
-	"numberOfEmployees": {
-		"@type": "QuantitativeValue",
-		"minValue": "'.$JsonLD_organisation_minValue.'",
-		"maxValue": "'.$JsonLD_organisation_maxValue.'"
-	}
-}', 'application/ld+json');
+$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "Organization","brand": "'.$sitename.'","legalName": "'.$JsonLD_organisation_legalName.'","founder": "'.$JsonLD_organisation_founder.'","foundingDate": "'.$JsonLD_organisation_foundingDate.'","logo": "'.$JsonLD_organisation_medialogo.'","faxNumber": "'.$JsonLD_organisation_fax.'","taxID": "'.$JsonLD_organisation_taxID.'","vatID": "'.$JsonLD_organisation_vatID.'","telephone": "'.$JsonLD_organisation_telephone.'","description": "'.$desciption.'","image": "'.$JsonLD_organisation_medialogo.'","url": "'.JURI::base().'","address": {"@type": "PostalAddress","streetAddress": "'.$CoB_StreetAddress.'","addressLocality": "'.$CoB_City.'","postalCode": "'.$CoB_Zipcode.'","addressContry": "'.$CoB_Country.'"},"numberOfEmployees": {"@type": "QuantitativeValue","minValue": "'.$JsonLD_organisation_minValue.'","maxValue": "'.$JsonLD_organisation_maxValue.'"},	"openingHoursSpecification":[{"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],"opens": "09:00","closes": "18:00"}],"contactPoint": [{"@type": "ContactPoint","telephone": "'.$JsonLD_organisation_telephone.'","contactType": "technical support","contactOption": "TollFree","areaServed": [  "GB", "FR" ],"availableLanguage": ["English","French"]}]}', 'application/ld+json');}
+
 if($jsonLD_type == 'json-ld-custom'){
 	$docs->addScriptDeclaration($jsonLD_custom, 'application/ld+json');
 }

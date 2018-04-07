@@ -101,7 +101,7 @@ defined('_JEXEC') or die;
 		$tw_pix_height = $params->get('photo_twitterheight');
 		$tw_movie_width = $params->get('video_twitterwidth');
 		$tw_movie_height = $params->get('video_twitterheight');
-		$langsapps = $params->get('langsapps');
+		$langsapps = substr($docs->language, 0, 2);
 		
 		$Twprd_label1 = $params->get('twitterprod_label1');
 		$Twprd_label2 = $params->get('twitterprod_label2');
