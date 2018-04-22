@@ -13,7 +13,8 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\HTML\HTMLHelper;
+#use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\Router\Route;
 //webutation-site-verification
 	$app = JFactory::getApplication();
@@ -241,4 +242,4 @@ use Joomla\CMS\Router\Route;
 		$gtagsmanager  = $params->get('gtagsmanager');
 		
 		
-require JModuleHelper::getLayoutPath('mod_metatags', $params->get('layout', 'default'));
+require ModuleHelper::getLayoutPath('mod_metatags', $params->get('layout', 'default'));
