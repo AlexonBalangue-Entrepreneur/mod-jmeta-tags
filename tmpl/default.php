@@ -3,23 +3,23 @@
 /**
  * @package	Module for Joomla!
  * @subpackage  mod_metatags
- * @version	2.4.8
+ * @version	4.2
  * @author	AlexonBalangue.me
  * @copyright	(C) 2012-2017 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 defined('_JEXEC') or die;
-
+#PREPARING JOOMLA VERSION 4
 ?>
 
 <?php
 /*********************[ JSON LD ]************************/
 if($jsonLD_type == 'json-ld-person'){
-$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "Person","honorificPrefix": "'.$JsonLD_person_honorificPrefix.'","name": "'.$JsonLD_person_name.'","birthDate": "'.$JsonLD_person_birthDate.'","faxNumber": "'.$JsonLD_person_faxNumber.'","gender": "'.$JsonLD_person_gender.'","telephone": "'.$JsonLD_person_telephone.'","description": "'.$desciption.'","image": "'.$JsonLD_person_mediaimage.'","url": "'.JURI::base().'","address": {"@type": "PostalAddress","streetAddress": "'.$CoB_StreetAddress.'","addressLocality": "'.$CoB_City.'","postalCode": "'.$CoB_Zipcode.'","addressContry": "'.$CoB_Country.'"}}', 'application/ld+json');
+$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "Person","honorificPrefix": "'.$JsonLD_person_honorificPrefix.'","name": "'.$JsonLD_person_name.'","birthDate": "'.$JsonLD_person_birthDate.'","faxNumber": "'.$JsonLD_person_faxNumber.'","gender": "'.$JsonLD_person_gender.'","telephone": "'.$JsonLD_person_telephone.'","description": "'.$desciption.'","image": "'.$JsonLD_person_mediaimage.'","url": "'.Uri::base().'","address": {"@type": "PostalAddress","streetAddress": "'.$CoB_StreetAddress.'","addressLocality": "'.$CoB_City.'","postalCode": "'.$CoB_Zipcode.'","addressContry": "'.$CoB_Country.'"}}', 'application/ld+json');
 }
 
 if($jsonLD_type == 'json-ld-organisation'){
-$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "Organization","brand": "'.$sitename.'","legalName": "'.$JsonLD_organisation_legalName.'","founder": "'.$JsonLD_organisation_founder.'","foundingDate": "'.$JsonLD_organisation_foundingDate.'","logo": "'.$JsonLD_organisation_medialogo.'","faxNumber": "'.$JsonLD_organisation_fax.'","taxID": "'.$JsonLD_organisation_taxID.'","vatID": "'.$JsonLD_organisation_vatID.'","telephone": "'.$JsonLD_organisation_telephone.'","description": "'.$desciption.'","image": "'.$JsonLD_organisation_medialogo.'","url": "'.JURI::base().'","address": {"@type": "PostalAddress","streetAddress": "'.$CoB_StreetAddress.'","addressLocality": "'.$CoB_City.'","postalCode": "'.$CoB_Zipcode.'","addressContry": "'.$CoB_Country.'"},"numberOfEmployees": {"@type": "QuantitativeValue","minValue": "'.$JsonLD_organisation_minValue.'","maxValue": "'.$JsonLD_organisation_maxValue.'"},	"openingHoursSpecification":[{"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],"opens": "09:00","closes": "18:00"}],"contactPoint": [{"@type": "ContactPoint","telephone": "'.$JsonLD_organisation_telephone.'","contactType": "technical support","contactOption": "TollFree","areaServed": [  "GB", "FR" ],"availableLanguage": ["English","French"]}]}', 'application/ld+json');}
+$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "Organization","brand": "'.$sitename.'","legalName": "'.$JsonLD_organisation_legalName.'","founder": "'.$JsonLD_organisation_founder.'","foundingDate": "'.$JsonLD_organisation_foundingDate.'","logo": "'.$JsonLD_organisation_medialogo.'","faxNumber": "'.$JsonLD_organisation_fax.'","taxID": "'.$JsonLD_organisation_taxID.'","vatID": "'.$JsonLD_organisation_vatID.'","telephone": "'.$JsonLD_organisation_telephone.'","description": "'.$desciption.'","image": "'.$JsonLD_organisation_medialogo.'","url": "'.Uri::base().'","address": {"@type": "PostalAddress","streetAddress": "'.$CoB_StreetAddress.'","addressLocality": "'.$CoB_City.'","postalCode": "'.$CoB_Zipcode.'","addressContry": "'.$CoB_Country.'"},"numberOfEmployees": {"@type": "QuantitativeValue","minValue": "'.$JsonLD_organisation_minValue.'","maxValue": "'.$JsonLD_organisation_maxValue.'"},	"openingHoursSpecification":[{"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],"opens": "09:00","closes": "18:00"}],"contactPoint": [{"@type": "ContactPoint","telephone": "'.$JsonLD_organisation_telephone.'","contactType": "technical support","contactOption": "TollFree","areaServed": [  "GB", "FR" ],"availableLanguage": ["English","French"]}]}', 'application/ld+json');}
 
 if($jsonLD_type == 'json-ld-custom'){
 	$docs->addScriptDeclaration($jsonLD_custom, 'application/ld+json');
@@ -28,7 +28,7 @@ if(!empty($custom_link_jsonjd_search)){
 	$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "WebSite", "url": "'.$site_base.'", "potentialAction": {"@type": "SearchAction","target": "'.$custom_link_jsonjd_search.'?q={search_term_string}","query-input": "required name=search_term_string"}}', 'application/ld+json');
 }
 /*********************[ META-TAGS SEO BASIC/ADVANCE ]************************/
-$docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">'); 
+$docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">'); 
 		if(!empty($CSP)){ 
 			$docs->setMetaData( 'Content-Security-Policy', $CSP, true ); 
 			$docs->setMetaData( 'Content-Security-Policy-Report-Only', $CSP, true ); 
@@ -49,8 +49,8 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			$docs->setMetaData('ZOOMTITLE', $sitename);
 			$docs->setMetaData('shareaholic:site_name', $sitename);
 		}
-		$docs->setMetaData('shareaholic:url', JURI::current());
-		$docs->setMetaData('shareaholic:language', $language);
+		$docs->setMetaData('shareaholic:url', Uri::current());
+		$docs->setMetaData('shareaholic:language', substr($language, 0, 2));
 		if(!empty($desciption)){
 			$docs->setMetaData('DC.description', $desciption);
 			$docs->setMetaData('dcterms.description', $desciption);
@@ -65,14 +65,14 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		$docs->setMetaData( 'FSPageDescription', $desciption );
 		
 		}
-		$docs->setMetaData( 'DCS.dcsuri', JURI::current() );
-		$docs->setMetaData( 'DC.language', $app->getCfg('language') );
-		$docs->setMetaData( 'dcterms.language', $app->getCfg('language') );
+		$docs->setMetaData( 'DCS.dcsuri', Uri::current() );
+		$docs->setMetaData( 'DC.language', substr($language, 0, 2) );
+		$docs->setMetaData( 'dcterms.language', substr($language, 0, 2) );
 		$docs->setMetaData( 'msapplication-starturl', './' );
 		$docs->setMetaData( 'msapplication-tooltip', $sitename );
 		$docs->setMetaData( 'msapplication-window', 'width=1024;height=768' );
 		$docs->setMetaData( 'SKYPE_TOOLBAR', 'SKYPE_TOOLBAR_PARSER_COMPATIBLE' );
-		$docs->setMetaData( 'startIndex', JURI::current() );
+		$docs->setMetaData( 'startIndex', Uri::current() );
 		if(!empty($Keyword)){
 			$docs->setMetaData('DC.subject', $Keyword);
 			$docs->setMetaData('fdse-keywords', $Keyword);
@@ -119,7 +119,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			$docs->setMetaData('audience', $audiencemeta);
 		}
 		$docs->setMetaData('ZOOMPAGEBOOST', '5');
-		$docs->setMetaData('FSLanguage', $language);
+		$docs->setMetaData('FSLanguage', substr($language, 0, 2));
 		if(!empty($DateCreationyyyymmdd)){
 			$docs->setMetaData('Date-Creation-yyyymmdd', explode('-', $DateCreationyyyymmdd));
 			$docs->setMetaData('DC.created', explode('-', $DateCreationyyyymmdd));
@@ -149,13 +149,13 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			$docs->setMetaData('shareaholic:article_author', $auteur );
 			
 		}
-		$docs->setMetaData('shareaholic:shareable_page', JURI::current() );
+		$docs->setMetaData('shareaholic:shareable_page', Uri::current() );
 		if(!empty($language)){
-			$docs->setMetaData('DC.language', $language);
-			$docs->setMetaData('gwt:property', 'locale='.$language);
+			$docs->setMetaData('DC.language', substr($language, 0, 2));
+			$docs->setMetaData('gwt:property', 'locale='.substr($language, 0, 2));
 			
 		}
-		$docs->setMetaData('mobile-agent', 'format=html5; url='.JURI::current());
+		$docs->setMetaData('mobile-agent', 'format=html5; url='.Uri::current());
 		if(!empty($expires)){
 			$docs->setMetaData('expires', $expires);
 			
@@ -235,14 +235,14 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		if(!empty($geoplacename)){ $docs->setMetaData('geo.placename', $geoplacename); }	
 		if(!empty($geoposition)){ $docs->setMetaData('geo.position', $geoposition); }	
 		if(!empty($ICBM)){ $docs->setMetaData('ICBM', $ICBM); }
-		if(!empty($language)){ $docs->setMetaData('FSLanguage', $language); }
+		if(!empty($language)){ $docs->setMetaData('FSLanguage', substr($language, 0, 2)); }
 
 
 /*********************[ FACEBOOK/OPENGRAPH OGP.ME ]*******************$logo_tld*****/
 		/**Namespace URI: http://ogp.me/ns/website#**/
 		$docs->addCustomTag( '<meta property="og:title" content="'.$sitename.'">
 			<meta property="og:type" content="'.$ogtypes.'">
-			<meta property="og:url" content="'.JURI::current().'">
+			<meta property="og:url" content="'.Uri::current().'">
 			<meta property="shareaholic:image" content="'.$ogpimages.'">
 			<meta property="og:image" content="'.$ogpimages.'">
 			<meta property="og:locale" content="'.$language.'">
@@ -253,7 +253,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			<meta property="og:profile_id" content="'.$fb_profils.'">
 			<meta property="fb:admins" content="'.$fbapp_admin.'">
 			<meta property="fb:app_id" content="'.$fbapp_idopgme.'">
-			<link rel="search" href="'.JURI::current().'">
+			<link rel="search" href="'.Uri::current().'">
 			<link rel="image_src" href="'.$logoimg.'">' );
 		
 /*********************[ META-TAGS Reputation/Security/Bank ]************************/
@@ -261,9 +261,9 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		if(!empty($bitly)){
 			$docs->setMetaData('bitly-verification', $bitly);
 		}
-			$docs->setMetaData('fdse-index-as', JURI::current());
-			$docs->setMetaData('Identifier-URL', JURI::current());
-			$docs->setMetaData('msapplication-starturl', JURI::current().'?pinned=true');	
+			$docs->setMetaData('fdse-index-as', Uri::current());
+			$docs->setMetaData('Identifier-URL', Uri::current());
+			$docs->setMetaData('msapplication-starturl', Uri::current().'?pinned=true');	
 
 		if(!empty($wotverification)){
 			$docs->setMetaData('wot-verification', $wotverification);
@@ -530,17 +530,17 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		}
 /*********************[ AUTRES/LINK ]************************/
 
-$docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.JURI::base().'dublincore.rdf">
+$docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.Uri::base().'dublincore.rdf">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="profile" href="http://dublincore.org/documents/2008/08/04/dc-html/">
-<link type="text/plain" rel="author" href="'.JURI::base().'humans.txt">
+<link type="text/plain" rel="author" href="'.Uri::base().'humans.txt">
 <meta prefix="fb: http://ogp.me/ns/fb#" property="fb:app_id" content="'.$fbapp_idopgme.'">' );
 
 
 /*********************[ AUTRES  ]************************/
 //JVersion::getShortVersion()
 $jversion = new JVersion();
-if( version_compare( $jversion->getShortVersion(), '3.1', 'ge' ) ):
+if( version_compare( $jversion->getShortVersion(), '3.5', 'ge' ) ):
    $jversion_out = '3.8';
 else:
    $jversion_out = '2.5';
@@ -552,7 +552,7 @@ $docs->setMetaData('shareaholic:joomla_version', $jversion_out);
 		$docs->setMetaData( 'MSThemeCompatible', 'yes' );
 		$docs->setMetaData( 'presdate', date("m-d-Y") );
 		$docs->setMetaData( 'host', $_SERVER['SERVER_NAME'] );		
-		$docs->setMetaData( 'linkage', JURI::base() );			
+		$docs->setMetaData( 'linkage', Uri::base() );			
 		$docs->setMetaData( 'msapplication-tap-highlight', 'yes' );	
 		$docs->setMetaData( 'DP.PopRank', '2.00000' );	
 		$docs->setMetaData( 'msapplication-window', 'width=250;height=250' );	
@@ -580,7 +580,7 @@ $docs->setMetaData('shareaholic:joomla_version', $jversion_out);
 /*********************[ AUTRES analystic ]************************/
 
 if(!empty($gganalystic_UA)){ 
-	$docs->addCustomTag('<script>{function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\'); ga(\'create\', \''.$gganalystic_UA.'\', \''.$gganalystic.'\'); ga(\'send\', \'pageview\');</script>	<link rel="shortlink" href="'.JURI::base().'">'); 
+	$docs->addCustomTag('<script>{function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\'); ga(\'create\', \''.$gganalystic_UA.'\', \''.$gganalystic.'\'); ga(\'send\', \'pageview\');</script>	<link rel="shortlink" href="'.Uri::base().'">'); 
 }
 
 
@@ -591,12 +591,12 @@ if(!empty($visualwebsiteoptimizer)){ $docs->addCustomTag('<script type=\'text/ja
 //PIWIK
 if($show_piwik == 1){
 	
-	echo '<script>var _paq = _paq || []; _paq.push(["setDocumentTitle", document.domain + "/" + document.title]); _paq.push(["setCookieDomain", "'.$setCookieDomain_piwik.'"]); _paq.push(["setDomains", ["'.$setCookieDomain_piwik.'"]]); _paq.push(["setCustomVariable", 1, "type", "client", "visit"]); _paq.push(["setDoNotTrack", true]); _paq.push(["alcoolisables"]); _paq.push([\'trackPageView\']); _paq.push([\'enableLinkTracking\']); (function() { var u="https://'.$urldomain_piwik_interne.'"; _paq.push([\'setTrackerUrl\', u+\'piwik.php\']); _paq.push([\'setSiteId\', '.$idsite_piwik.']); var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s); })();</script><noscript><p><img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0;" alt="Tracker visitor intern with Piwik on '.JURI::base().'"></p></noscript>';
+	echo '<script>var _paq = _paq || []; _paq.push(["setDocumentTitle", document.domain + "/" + document.title]); _paq.push(["setCookieDomain", "'.$setCookieDomain_piwik.'"]); _paq.push(["setDomains", ["'.$setCookieDomain_piwik.'"]]); _paq.push(["setCustomVariable", 1, "type", "client", "visit"]); _paq.push(["setDoNotTrack", true]); _paq.push(["alcoolisables"]); _paq.push([\'trackPageView\']); _paq.push([\'enableLinkTracking\']); (function() { var u="https://'.$urldomain_piwik_interne.'"; _paq.push([\'setTrackerUrl\', u+\'piwik.php\']); _paq.push([\'setSiteId\', '.$idsite_piwik.']); var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s); })();</script><noscript><p><img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0;" alt="Tracker visitor intern with Piwik on '.Uri::base().'"></p></noscript>';
 	
 
 }
 if($show_piwik == 2){
-echo '<img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0" alt="Tracker visitor interne with Piwik on '.JURI::base().'">';	
+echo '<img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0" alt="Tracker visitor interne with Piwik on '.Uri::base().'">';	
 	
 }
 /*********************[ AUTRES Smartphone/Mobile ]************************/
@@ -608,11 +608,11 @@ if($show_mobile == 1){
 }	
 		if($doYouHave_AffilateApple == 1){ 
 				if(!empty($myAffiliateDataapps) AND !empty($idiphoneapps)){ 
-					$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', affiliate-data='.$myAffiliateDataapps.', app-argument='.JURI::base()); 
+					$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', affiliate-data='.$myAffiliateDataapps.', app-argument='.Uri::base()); 
 				}
 		} else if($doYouHave_AffilateApple == 2) {
 			if(!empty($idiphoneapps)){ 
-						$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', app-argument='.JURI::base()); 
+						$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', app-argument='.Uri::base()); 
 			}
 		}
 if(!empty($logoimg_mobile_startup)){
@@ -654,41 +654,41 @@ if(!empty($pinned8_IEconfig)){
 	$docs->setMetaData('msapplication-config', $pinned8_IEconfig);  	
 }
 /*********************[ Jump List "Tasks" for Pinned Sites on windows 7 ]************************/
-$docs->setMetaData('msapplication-task', 'name='.$sitename.';action-uri='.JURI::root().';icon-uri='.JURI::root().$JltaskIcons_final); //final
+$docs->setMetaData('msapplication-task', 'name='.$sitename.';action-uri='.Uri::root().';icon-uri='.Uri::root().$JltaskIcons_final); //final
 if(!empty($JltaskNames_1) AND !empty($JltaskPages_1)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_1.';action-uri='.$JltaskPages_1.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_1.';action-uri='.$JltaskPages_1.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_2) AND !empty($JltaskPages_2)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_2.';action-uri='.$JltaskPages_2.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_2.';action-uri='.$JltaskPages_2.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_3) AND !empty($JltaskPages_3)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_3.';action-uri='.$JltaskPages_3.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_3.';action-uri='.$JltaskPages_3.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_4) AND !empty($JltaskPages_4)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_4.';action-uri='.$JltaskPages_4.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_4.';action-uri='.$JltaskPages_4.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_5) AND !empty($JltaskPages_5)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_5.';action-uri='.$JltaskPages_5.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_5.';action-uri='.$JltaskPages_5.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_6) AND !empty($JltaskPages_6)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_6.';action-uri='.$JltaskPages_6.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_6.';action-uri='.$JltaskPages_6.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_7) AND !empty($JltaskPages_7)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_7.';action-uri='.$JltaskPages_7.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_7.';action-uri='.$JltaskPages_7.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_8) AND !empty($JltaskPages_8)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_8.';action-uri='.$JltaskPages_8.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_8.';action-uri='.$JltaskPages_8.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_9) AND !empty($JltaskPages_9)){	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_9.';action-uri='.$JltaskPages_9.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_9.';action-uri='.$JltaskPages_9.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 
 /*********************[ AUTRES (Front-End Output Show) ]************************/

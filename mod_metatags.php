@@ -2,27 +2,39 @@
 /**
  * @package	Module for Joomla!
  * @subpackage  mod_metatags
- * @version	2.4.6
+ * @version	4.2
  * @author	AlexonBalangue.me
- * @copyright	(C) 2012-2016 Alexon Balangue. All rights reserved.
+ * @copyright	(C) 2012-2018 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
-
+#PREPARING JOOMLA VERSION 4
 defined('_JEXEC') or die;
+
+use Joomla\CMS\Application;
+use Joomla\CMS\Document;
+#use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Uri\Uri;
+
 //webutation-site-verification
-	$app = JFactory::getApplication();
-	$docs = JFactory::getDocument();
+	$app = Factory::getApplication(); #prepared J4
+	#$app = JFactory::getApplication(); #not compatible J3.8.8 maybe
+	$docs = Factory::getDocument(); #prepared J4
+	#$docs = JFactory::getDocument(); #not compatible J3.8.8 maybe
 	$docs->setGenerator('');//remove generator
-		$sitename = $app->getCfg('sitename');
-		$site_url = JURI::current();
-		$Keyword = $app->getCfg('MetaKeys');
-		$newsKeyword = /****$app->getCfg('MetaKeys');***/ $params->get('news-keywords');
+		//$sitename = $app->getCfg('sitename');
+		$sitename = $app->get('page_title');
+		$site_url = Uri::current();
+		$Keyword = $app->get('MetaKeys');
+		$newsKeyword = $params->get('news-keywords');
 		$auteur = $params->get('author-userid-website'); //$app->getCfg('MetaAuthor');
-		$desciption = $app->getCfg('MetaDesc');
+		$desciption = $app->et('page_description');
 		
 		$language  = $docs->language;
-		$site_root = JURI::root();
-		$site_base = JURI::base();
+		$site_root = Uri::root();
+		$site_base = Uri::base();
 		//$site_all = $params->get('protocoles').'://'.$_SERVER['SERVER_NAME'].'/';
 		
 		$custom_link_jsonjd_search  = $params->get('jsonjd-search');
