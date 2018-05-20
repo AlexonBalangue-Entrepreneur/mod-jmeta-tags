@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Application;
 use Joomla\CMS\Document;
-#use Joomla\CMS\Helper\ModuleHelper;
+use Joomla\CMS\Helper\ModuleHelper;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
@@ -247,4 +247,4 @@ use Joomla\CMS\Uri\Uri;
 		$gtagsmanager  = $params->get('gtagsmanager');
 		
 		
-require JModuleHelper::getLayoutPath('mod_metatags', $params->get('layout', 'default'));
+require ModuleHelper::getLayoutPath('mod_metatags', $params->get('layout', 'default'));
