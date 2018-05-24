@@ -22,7 +22,7 @@ use Joomla\Registry\Registry;
 		$Keyword = htmlspecialchars($gconfigs->get('MetaKeys'), ENT_COMPAT, 'UTF-8');
 		$auteur = $params->get('author-userid-website'); //$app->getCfg('MetaAuthor');
 		$desciption = htmlspecialchars($docs->getDescription(), ENT_COMPAT, 'UTF-8');
-		substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)
+	
 		$language  = substr($docs->language, 0, 2); #JFactory::getLanguage()->getTag()
 		$site_root = JURI::root();
 		$site_base = JURI::base();
@@ -43,6 +43,9 @@ use Joomla\Registry\Registry;
 		$detectify_verification   = $params->get('detectify-verification');
 		$format_detection_SafariiOS   = $params->get('format_detection_SafariiOS');
 
+		$DJsonLDs   = $params->get('date-jsonld');
+		$JsonLD_opens   = $params->get('JsonLD-opens');
+		$JsonLD_close   = $params->get('JsonLD-close');
 		$RevisitAfter   = $params->get('Revisit-After');
 		$Rating   = $params->get('Rating');
 		$Distribution   = $params->get('Distribution');

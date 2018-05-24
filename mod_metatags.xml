@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="3.8" client="site" method="upgrade">
-	<name>Module - Meta-Tags</name>
+	<name>Meta-Tags</name>
 	<author>Alexon Balangue</author>
-	<creationDate>28 Mars 2018</creationDate>
+	<creationDate>24 May 2018</creationDate>
 	<copyright>Copyright (C) 2012-2018. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
-	<authorEmail>moi.sites@alexonbalangue.me</authorEmail>
+	<authorEmail>contacter@alexonbalangue.me</authorEmail>
 	<authorUrl>www.alexonbalangue.me</authorUrl>
-	<version>4.1.9</version>
+	<version>4.2</version>
 	<description>MOD_METATAGS_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_metatags">mod_metatags.php</filename>
@@ -1017,7 +1017,55 @@
 					label="Enter Code Json-LD" 
 					description="" 
 					rows="10" cols="5" 
-					filter="raw" />
+					filter="raw" />				
+				<field 
+					name="date-jsonld"
+					type="list"
+					default=""
+					label="Date week/date semaine (Json-LD)"
+					description="">	
+						<option value=>JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_0</option>
+						<option value="1">Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday</option>
+						<option value="2">Monday</option>
+						<option value="3">Monday, Tuesday</option>
+						<option value="4">Monday, Tuesday, Wednesday</option>
+						<option value="5">Monday, Tuesday, Wednesday, Friday</option>
+						<option value="6">Monday, Tuesday, Wednesday, Friday, Saturday</option>
+						<option value="7">Monday, Tuesday, Wednesday, Friday, Saturday, Sunday</option>
+						<option value="8">Tuesday</option>
+						<option value="9">Tuesday, Wednesday</option>
+						<option value="10">Tuesday, Wednesday, Thursday</option>
+						<option value="11">Tuesday, Wednesday, Thursday, Friday</option>
+						<option value="12">Tuesday, Wednesday, Thursday, Friday, Saturday</option>
+						<option value="13">Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday</option>
+						<option value="14">Wednesday</option>
+						<option value="15">Wednesday, Thursday</option>
+						<option value="16">Wednesday, Thursday, Friday</option>
+						<option value="17">Wednesday, Thursday, Friday, Saturday</option>
+						<option value="18">Wednesday, Thursday, Friday, Saturday, Sunday</option>
+						<option value="19">Thursday</option>
+						<option value="20">Thursday, Friday</option>
+						<option value="21">Thursday, Friday, Saturday</option>
+						<option value="22">Thursday, Friday, Saturday, Sunday</option>
+						<option value="23">Friday</option>
+						<option value="24">Friday, Saturday</option>
+						<option value="25">Friday, Saturday, Sunday</option>
+						<option value="26">Saturday</option>
+						<option value="27">Saturday, Sunday</option>
+						<option value="28">Sunday</option>
+				</field>
+				<field 
+					name="JsonLD-opens"
+					type="text"
+					default=""
+					label="Open/ouverture"
+					description="24h (exemple: 09:00)" />
+				<field 
+					name="JsonLD-close"
+					type="text"
+					default=""
+					label="Close/Fermer"
+					description="24h (exemple: 18:00)" />
 			</fieldset>
 			<fieldset name="mod_meta-mobile" label="Smartphone/Mobile">
 				<field 

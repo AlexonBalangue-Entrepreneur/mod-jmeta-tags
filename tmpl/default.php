@@ -37,7 +37,42 @@ $docs->addScriptDeclaration('{
 	}', 'application/ld+json');
 }
 
+if ($DJsonLDs == '1'){ $DJson = '"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '2'){ $DJson = '"Monday"'; }
+elseif ($DJsonLDs == '3'){ $DJson = '"Monday", "Tuesday"'; }
+elseif ($DJsonLDs == '4'){ $DJson = '"Monday", "Tuesday", "Wednesday"'; }
+elseif ($DJsonLDs == '5'){ $DJson = '"Monday", "Tuesday", "Wednesday", "Friday"'; }
+elseif ($DJsonLDs == '6'){ $DJson = '"Monday", "Tuesday", "Wednesday", "Friday", "Saturday"'; }
+elseif ($DJsonLDs == '7'){ $DJson = '"Monday", "Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '8'){ $DJson = '"Tuesday"'; }
+elseif ($DJsonLDs == '9'){ $DJson = '"Tuesday", "Wednesday"'; }
+elseif ($DJsonLDs == '10'){ $DJson = '"Tuesday", "Wednesday", "Thursday"'; }
+elseif ($DJsonLDs == '11'){ $DJson = '"Tuesday", "Wednesday", "Thursday", "Friday"'; }
+elseif ($DJsonLDs == '12'){ $DJson = '"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"'; }
+elseif ($DJsonLDs == '13'){ $DJson = '"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '14'){ $DJson = '"Wednesday"'; }
+elseif ($DJsonLDs == '15'){ $DJson = '"Wednesday", "Thursday"'; }
+elseif ($DJsonLDs == '16'){ $DJson = '"Wednesday", "Thursday", "Friday"'; }
+elseif ($DJsonLDs == '17'){ $DJson = '"Wednesday", "Thursday", "Friday", "Saturday"'; }
+elseif ($DJsonLDs == '18'){ $DJson = '"Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '19'){ $DJson = '"Thursday"'; }
+elseif ($DJsonLDs == '20'){ $DJson = '"Thursday", "Friday"'; }
+elseif ($DJsonLDs == '21'){ $DJson = '"Thursday", "Friday", "Saturday"'; }
+elseif ($DJsonLDs == '22'){ $DJson = '"Thursday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '23'){ $DJson = '"Friday"'; }
+elseif ($DJsonLDs == '24'){ $DJson = '"Friday", "Saturday"'; }
+elseif ($DJsonLDs == '25'){ $DJson = '"Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '26'){ $DJson = '"Saturday"'; }
+elseif ($DJsonLDs == '27'){ $DJson = '"Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '28'){ $DJson = '"Sunday"'; }
+
+
+		if(!empty($JsonLD_opens)){$JopenLD = '"opens": "'.$JsonLD_opens.'",'; } 
+		if(!empty($JsonLD_close)){$JcloseLD = '"close": "'.$JsonLD_close.'"'; }
+
+	
 if($jsonLD_type == 'json-ld-organisation'){
+
 $docs->addScriptDeclaration('{
 	"@context": "http://schema.org",
 	"@type": "Organization",
@@ -68,10 +103,10 @@ $docs->addScriptDeclaration('{
 	"openingHoursSpecification": [ { 
 		"@type": "OpeningHoursSpecification",
 		"dayOfWeek": [
-			"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" 
+			'.$DJson.'
 		],
-		"opens": "09:00",
-		"closes": "18:00" 
+		'.$JopenLD.'
+		'.$JcloseLD.' 
 	}],
 	"contactPoint": [{ 
 		"@type": "ContactPoint", 
@@ -84,7 +119,7 @@ $docs->addScriptDeclaration('{
 if($jsonLD_type == 'json-ld-custom'){
 	$docs->addScriptDeclaration($jsonLD_custom, 'application/ld+json');
 }
-	$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "WebSite", "url": "'.$site_base.'", "potentialAction": {"@type": "SearchAction","target": "'.JUri::root(true).'/index.php?option=com_finder&view=search?q={search_term_string}","query-input": "required name=search_term_string"}}', 'application/ld+json');
+	$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "WebSite", "url": "'.$site_base.'", "potentialAction": {"@type": "SearchAction","target": "'.JUri::root(true).'/index.php?option=com_finder&view=search&lang='.$language.'?q={search_term_string}","query-input": "required name=search_term_string"}}', 'application/ld+json');
 
 /*********************[ META-TAGS SEO BASIC/ADVANCE ]************************/
 $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">'); 
