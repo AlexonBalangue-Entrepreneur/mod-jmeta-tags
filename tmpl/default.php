@@ -178,7 +178,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			$docs->setMetaData('Rating', $Rating);
 		}
 		if(!empty($rights_standard)){
-			$docs->setMetaData('rights-standard', ';'.$gconfigs->get('MetaRights'));
+			$docs->setMetaData('rights-standard', $gconfigs->get('MetaRights'));
 		}
 		if(!empty($Distribution)){
 			$docs->setMetaData('Distribution', $Distribution);

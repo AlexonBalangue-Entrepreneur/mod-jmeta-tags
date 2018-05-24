@@ -50,7 +50,6 @@ use Joomla\Registry\Registry;
 		$Rating   = $params->get('Rating');
 		$Distribution   = $params->get('Distribution');
 		$Location   = $params->get('Location');
-		$gconfigs->get('MetaRights')   = '(c) '.date('Y').' '.$_SERVER['SERVER_NAME'];
 		$Publisher   = $params->get('Publisher');
 		$DateCreationyyyymmdd   = $params->get('Date-Creation-yyyymmdd');
 		$DateRevisionyyyymmdd   = $params->get('Date-Revision-yyyymmdd');
