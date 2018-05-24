@@ -2,12 +2,12 @@
 <extension type="module" version="3.8" client="site" method="upgrade">
 	<name>Module - Meta-Tags</name>
 	<author>Alexon Balangue</author>
-	<creationDate>20 May 2018</creationDate>
+	<creationDate>28 Mars 2018</creationDate>
 	<copyright>Copyright (C) 2012-2018. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
-	<authorEmail>contacter@alexonbalangue.me</authorEmail>
+	<authorEmail>moi.sites@alexonbalangue.me</authorEmail>
 	<authorUrl>www.alexonbalangue.me</authorUrl>
-	<version>4.2</version>
+	<version>4.1.9</version>
 	<description>MOD_METATAGS_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_metatags">mod_metatags.php</filename>
@@ -64,13 +64,6 @@
 						<option value="local">JFIELD_MOD_METATAGS_DISTRIBUTION_LOCAL_OPTION</option>
 						<option value="iu">JFIELD_MOD_METATAGS_DISTRIBUTION_IU_OPTION</option>
 				</field>
-				<field 
-					name="news-keywords"
-					type="text"
-					default=""
-					size="50"
-					label="news_keyword"
-					description="Google" />
 				<field 
 					name="Publisher"
 					type="text"
@@ -805,153 +798,11 @@
 				<field name="backlinks-frontendf" type="textarea" default="" label="Enter some html (BODY)" description="" rows="10" cols="5" filter="raw"/>
 				
 				<field 
-					name="hitparad-id-site"
-					type="text"
-					default=""
-					label="HitParade (Site=)"
-					description="" />	
-				<field 
 					name="viglink_idsite"
 					type="text"
 					default=""
 					label="viglink ID"
-					description="" />	
-				<field 
-					name="nospartenaires_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="NoPartenaires.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>		
-				<field 
-					name="plazoo_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="plazoo.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="oobdoo_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="oobdoo.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="quantcast_backlink"
-					type="text"
-					default=""
-					label="quantcast.com ID"
-					description="" />
-				<field 
-					name="AddShoppers_backlink"
-					type="text"
-					default=""
-					label="AddShoppers ID"
-					description="" />
-				<field 
-					name="thumbshots_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="thumbshots.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="activesearchresults_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="activesearchresults.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="Pingback_url"
-					type="text"
-					default=""
-					label="PingBack URL"
-					description="" />	
-				<field 
-					name="hebdotop_idsite"
-					type="text"
-					default=""
-					label="Hebdotop ID"
-					description="" />	
-				<field 
-					name="pagerank_url"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="pagerank.fr"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="freewebsubmission_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="freewebsubmission.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="addme_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="addme.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="sonicrun_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="sonicrun.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="addpro_backlink"
-					type="radio"
-					default="0"
-					class="btn-group btn-group-yesno"
-					label="addpro.com"
-					description="">
-						<option value="0">hide</option>
-						<option value="1">show</option>
-				</field>
-				<field 
-					name="ineedhits_idsite"
-					type="text"
-					default=""
-					label="ineedhits.com ID"
-					description="" />	
-				<field 
-					name="hypersmash_idsite"
-					type="text"
-					default=""
-					label="hypersmash.com ID"
-					description="" />						
+					description="" />		
 			</fieldset>
 			<fieldset name="mod_meta-contactbusiness" label="Contact Business or individual">
 				<field 
@@ -1167,16 +1018,6 @@
 					description="" 
 					rows="10" cols="5" 
 					filter="raw" />
-				<field 
-					type="spacer" 
-					name="schemaoption_custom" 
-					label="schema.org | Option" />
-				<field 
-					name="jsonjd-search"
-					type="text"
-					default=""
-					label="Recherche interne/intern Search"
-					description="URL custom here without 'q' and search terme, eg: https://www.site.tld/search.html" />
 			</fieldset>
 			<fieldset name="mod_meta-mobile" label="Smartphone/Mobile">
 				<field 
@@ -1250,24 +1091,6 @@
 					default=""
 					label="Analystic UA"
 					description="JFIELD_MOD_METATAGS_DOMAINESNAME_DESC" />	
-				<field 
-					name="optimizelyKEYjs"
-					type="text"
-					default=""
-					label="JFIELD_MOD_METATAGS_OPTIMIZELYJS_LABEL"
-					description="JFIELD_MOD_METATAGS_OPTIMIZELYJS_DESC" />	
-				<field 
-					name="visualwebsiteoptimizers-idaccount"
-					type="text"
-					default=""
-					label="JFIELD_MOD_METATAGS_VISUALWEBSITEOPTIMIZERS_ACCOUNTID_LABEL"
-					description="JFIELD_MOD_METATAGS_VISUALWEBSITEOPTIMIZERS_ACCOUNTID_DESC" />	
-				<field 
-					name="xiti-s"
-					type="text"
-					default=""
-					label="s= (XITI)"
-					description="" />	
 				
 				<field 
 					name="show_piwik"

@@ -4,37 +4,28 @@
  * @subpackage  mod_metatags
  * @version	4.2
  * @author	AlexonBalangue.me
- * @copyright	(C) 2012-2018 Alexon Balangue. All rights reserved.
+ * @copyright	(C) 2012-2016 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
-#PREPARING JOOMLA VERSION 4
-defined('_JEXEC') or die;
 
-use Joomla\CMS\Application;
-use Joomla\CMS\Document;
-use Joomla\CMS\Helper\ModuleHelper;
-use Joomla\CMS\Factory;
-use Joomla\CMS\Language\Text;
-use Joomla\CMS\Router\Route;
-use Joomla\CMS\Uri\Uri;
+defined('_JEXEC') or die;
+use Joomla\Registry\Registry;
 
 //webutation-site-verification
-	$app = Factory::getApplication(); #prepared J4
-	#$app = JFactory::getApplication(); #not compatible J3.8.8 maybe
-	$docs = Factory::getDocument(); #prepared J4
-	#$docs = JFactory::getDocument(); #not compatible J3.8.8 maybe
-	$docs->setGenerator('');//remove generator
-		//$sitename = $app->getCfg('sitename');
-		$sitename = $app->get('page_title');
-		$site_url = Uri::current();
-		$Keyword = $app->get('MetaKeys');
-		$newsKeyword = $params->get('news-keywords');
+	$app = JFactory::getApplication();
+	$docs = JFactory::getDocument();
+	$gconfigs = JFactory::getConfig();
+	$docs->setGenerator(null);//remove generator
+		$sitename = $gconfigs->get('sitename');
+		$titles = htmlspecialchars($docs->getTitle(), ENT_COMPAT, 'UTF-8');
+		$site_url = JURI::current();
+		$Keyword = htmlspecialchars($gconfigs->get('MetaKeys'), ENT_COMPAT, 'UTF-8');
 		$auteur = $params->get('author-userid-website'); //$app->getCfg('MetaAuthor');
-		$desciption = $app->et('page_description');
-		
-		$language  = $docs->language;
-		$site_root = Uri::root();
-		$site_base = Uri::base();
+		$desciption = htmlspecialchars($docs->getDescription(), ENT_COMPAT, 'UTF-8');
+		substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2)
+		$language  = substr($docs->language, 0, 2); #JFactory::getLanguage()->getTag()
+		$site_root = JURI::root();
+		$site_base = JURI::base();
 		//$site_all = $params->get('protocoles').'://'.$_SERVER['SERVER_NAME'].'/';
 		
 		$custom_link_jsonjd_search  = $params->get('jsonjd-search');
@@ -56,7 +47,7 @@ use Joomla\CMS\Uri\Uri;
 		$Rating   = $params->get('Rating');
 		$Distribution   = $params->get('Distribution');
 		$Location   = $params->get('Location');
-		$Copyright   = '(c) '.date('Y').' '.$_SERVER['SERVER_NAME'];
+		$gconfigs->get('MetaRights')   = '(c) '.date('Y').' '.$_SERVER['SERVER_NAME'];
 		$Publisher   = $params->get('Publisher');
 		$DateCreationyyyymmdd   = $params->get('Date-Creation-yyyymmdd');
 		$DateRevisionyyyymmdd   = $params->get('Date-Revision-yyyymmdd');
@@ -113,7 +104,7 @@ use Joomla\CMS\Uri\Uri;
 		$tw_pix_height = $params->get('photo_twitterheight');
 		$tw_movie_width = $params->get('video_twitterwidth');
 		$tw_movie_height = $params->get('video_twitterheight');
-		$langsapps = substr($docs->language, 0, 2);
+		$langsapps = $params->get('langsapps');
 		
 		$Twprd_label1 = $params->get('twitterprod_label1');
 		$Twprd_label2 = $params->get('twitterprod_label2');
@@ -192,20 +183,9 @@ use Joomla\CMS\Uri\Uri;
 		$pinned8_IEconfig = $params->get('pinned8_IEconfig');		
 		$doYouHave_AffilateApple = $params->get('doYouHave_AffilateApple');
 		$myAccountGoogleplus = $params->get('myAccountGoogleplus');
-		$hitparadidsite = $params->get('hitparad-id-site');
 		$viglink_idsite = $params->get('viglink_idsite');
-		$nospartenaires_backlink = $params->get('nospartenaires_backlink');
 		$lxwfr_backlink = $params->get('lxwfr_backlink');
-		$plazoo_backlink = $params->get('plazoo_backlink');
-		$oobdoo_backlink = $params->get('oobdoo_backlink');
-		$quantcast_backlink = $params->get('quantcast_backlink');
-		$AddShoppers_backlink = $params->get('AddShoppers_backlink');
-		$thumbshots_backlink = $params->get('thumbshots_backlink');
-		$activesearchresults_backlink = $params->get('activesearchresults_backlink');
 		$APPID_webstoreGoogle = $params->get('APPID_webstoreGoogle');
-		$Pingback_url = $params->get('Pingback_url');
-		$pagerank_url = $params->get('pagerank_url');
-		$hebdotop_idsite = $params->get('hebdotop_idsite');
 		
 		/**Mesure d'audiance***/
 		$num_s_xiti = $params->get('xiti-s');		
@@ -247,4 +227,4 @@ use Joomla\CMS\Uri\Uri;
 		$gtagsmanager  = $params->get('gtagsmanager');
 		
 		
-require ModuleHelper::getLayoutPath('mod_metatags', $params->get('layout', 'default'));
+require JModuleHelper::getLayoutPath('mod_metatags', $params->get('layout', 'default'));
