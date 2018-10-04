@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.8" client="site" method="upgrade">
+<extension type="module" version="3.9" client="site" method="upgrade">
 	<name>mod_metatags</name>
 	<author>Alexon Balangue</author>
 	<creationDate>24 May 2018</creationDate>
@@ -7,7 +7,7 @@
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>contacter@alexonbalangue.me</authorEmail>
 	<authorUrl>www.alexonbalangue.me</authorUrl>
-	<version>4.2</version>
+	<version>4.3</version>
 	<description>MOD_METATAGS_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_metatags">mod_metatags.php</filename>

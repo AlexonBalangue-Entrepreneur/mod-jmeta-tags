@@ -2,9 +2,9 @@
 /**
  * @package	Module for Joomla!
  * @subpackage  mod_metatags
- * @version	4.2
+ * @version	4.3
  * @author	AlexonBalangue.me
- * @copyright	(C) 2012-2016 Alexon Balangue. All rights reserved.
+ * @copyright	(C) 2012-2018 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
