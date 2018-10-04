@@ -2,7 +2,7 @@
 <extension type="module" version="3.9" client="site" method="upgrade">
 	<name>mod_metatags</name>
 	<author>Alexon Balangue</author>
-	<creationDate>24 May 2018</creationDate>
+	<creationDate>4 september 2018</creationDate>
 	<copyright>Copyright (C) 2012-2018. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>contacter@alexonbalangue.me</authorEmail>
@@ -15,6 +15,7 @@
 		<folder>tmpl</folder>
 		<folder>language</folder>
 		<filename>index.html</filename>	
+		<filename>autotrack.js</filename>	
 	</files>
 	<languages>
 		<language tag="en-GB">language/en-GB/en-GB.mod_metatags.ini</language>
@@ -1127,18 +1128,12 @@
 					label="Google Tags Manager"
 					description="Code GTM" />
 			</fieldset>
-			<fieldset name="mod_meta-analystic" label="Analystic">				
-				<field 
-					name="analyse-domainname"
-					type="text"
-					default=""
-					label="JFIELD_MOD_METATAGS_DOMAINESNAME_LABEL"
-					description="JFIELD_MOD_METATAGS_DOMAINESNAME_DESC" />	
+			<fieldset name="mod_meta-analystic" label="Analystic">		
 				<field 
 					name="analyse-UA"
 					type="text"
 					default=""
-					label="Analystic UA"
+					label="Analystic UA-xxxx-xx"
 					description="JFIELD_MOD_METATAGS_DOMAINESNAME_DESC" />	
 				
 				<field 

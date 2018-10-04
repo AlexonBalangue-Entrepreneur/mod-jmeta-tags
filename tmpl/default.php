@@ -9,7 +9,7 @@
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 defined('_JEXEC') or die;
-use Joomla\Registry\Registry;
+
 ?>
 
 <?php
@@ -26,7 +26,7 @@ $docs->addScriptDeclaration('{
 		"telephone": "'.$JsonLD_person_telephone.'",
 		"description": "'.$desciption.'",
 		"image": "'.$JsonLD_person_mediaimage.'",
-		"url": "'.JURI::base().'",
+		"url": "'.JUri::base().'",
 		"address": {
 			"@type": "PostalAddress",
 			"streetAddress": "'.$CoB_StreetAddress.'",
@@ -87,7 +87,7 @@ $docs->addScriptDeclaration('{
 	"telephone": "'.$JsonLD_organisation_telephone.'",
 	"description": "'.$desciption.'",
 	"image": "'.$JsonLD_organisation_medialogo.'",
-	"url": "'.JURI::base().'",
+	"url": "'.JUri::base().'",
 	"address": { 
 		"@type": "PostalAddress",
 		"streetAddress": "'.$CoB_StreetAddress.'",
@@ -122,7 +122,7 @@ if($jsonLD_type == 'json-ld-custom'){
 	$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "WebSite", "url": "'.$site_base.'", "potentialAction": {"@type": "SearchAction","target": "'.JUri::root(true).'/index.php?option=com_finder&view=search&lang='.$language.'?q={search_term_string}","query-input": "required name=search_term_string"}}', 'application/ld+json');
 
 /*********************[ META-TAGS SEO BASIC/ADVANCE ]************************/
-$docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">'); 
+$docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">'); 
 		if(!empty($CSP)){ 
 			$docs->setMetaData( 'Content-Security-Policy', $CSP, true ); 
 			$docs->setMetaData( 'Content-Security-Policy-Report-Only', $CSP, true ); 
@@ -142,7 +142,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			$docs->setMetaData('ZOOMTITLE', $sitename.' '.$titles);
 			$docs->setMetaData('shareaholic:site_name', $sitename.' '.$titles);
 		
-		$docs->setMetaData('shareaholic:url', JURI::current());
+		$docs->setMetaData('shareaholic:url', JUri::current());
 		$docs->setMetaData('shareaholic:language', $language);
 		if(!empty($desciption)){
 			$docs->setMetaData('DC.description', $desciption);
@@ -158,14 +158,14 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		$docs->setMetaData( 'FSPageDescription', $desciption );
 		
 		}
-		$docs->setMetaData( 'DCS.dcsuri', JURI::current() );
+		$docs->setMetaData( 'DCS.dcsuri', JUri::current() );
 		$docs->setMetaData( 'DC.language', $language );
 		$docs->setMetaData( 'dcterms.language', $language );
 		$docs->setMetaData( 'msapplication-starturl', './' );
 		$docs->setMetaData( 'msapplication-tooltip', $sitename.' '.$titles );
 		$docs->setMetaData( 'msapplication-window', 'width=1024;height=768' );
 		$docs->setMetaData( 'SKYPE_TOOLBAR', 'SKYPE_TOOLBAR_PARSER_COMPATIBLE' );
-		$docs->setMetaData( 'startIndex', JURI::current() );
+		$docs->setMetaData( 'startIndex', JUri::current() );
 		
 			$docs->setMetaData('DC.subject', $Keyword);
 			$docs->setMetaData('fdse-keywords', $Keyword);
@@ -238,12 +238,12 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			$docs->setMetaData('shareaholic:article_author', $auteur );
 			
 		}
-		$docs->setMetaData('shareaholic:shareable_page', JURI::current() );
+		$docs->setMetaData('shareaholic:shareable_page', JUri::current() );
 		
 			$docs->setMetaData('DC.language', $language);
 			$docs->setMetaData('gwt:property', 'locale='.$language);
 			
-		$docs->setMetaData('mobile-agent', 'format=html5; url='.JURI::current());
+		$docs->setMetaData('mobile-agent', 'format=html5; url='.JUri::current());
 		if(!empty($expires)){
 			$docs->setMetaData('expires', $expires);
 			
@@ -312,8 +312,6 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			$docs->setMetaData('slurp', $robots);
 			$docs->setMetaData('teoma', $robots);
 		}	
-
-
 			$docs->setMetaData('format-print', 'A4');
 			$docs->setMetaData('resolutions', '2x, 4x, 8x');
 
@@ -330,7 +328,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		/**Namespace URI: http://ogp.me/ns/website#**/
 		$docs->addCustomTag( '<meta property="og:title" content="'.$sitename.'">
 			<meta property="og:type" content="'.$ogtypes.'">
-			<meta property="og:url" content="'.JURI::current().'">
+			<meta property="og:url" content="'.JUri::current().'">
 			<meta property="shareaholic:image" content="'.$ogpimages.'">
 			<meta property="og:image" content="'.$ogpimages.'">
 			<meta property="og:locale" content="'.$language.'">
@@ -341,7 +339,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 			<meta property="og:profile_id" content="'.$fb_profils.'">
 			<meta property="fb:admins" content="'.$fbapp_admin.'">
 			<meta property="fb:app_id" content="'.$fbapp_idopgme.'">
-			<link rel="search" href="'.JURI::current().'">
+			<link rel="search" href="'.JUri::current().'">
 			<link rel="image_src" href="'.$logoimg.'">' );
 		
 /*********************[ META-TAGS Reputation/Security/Bank ]************************/
@@ -349,9 +347,9 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		if(!empty($bitly)){
 			$docs->setMetaData('bitly-verification', $bitly);
 		}
-			$docs->setMetaData('fdse-index-as', JURI::current());
-			$docs->setMetaData('Identifier-URL', JURI::current());
-			$docs->setMetaData('msapplication-starturl', JURI::current().'?pinned=true');	
+			$docs->setMetaData('fdse-index-as', JUri::current());
+			$docs->setMetaData('Identifier-URL', JUri::current());
+			$docs->setMetaData('msapplication-starturl', JUri::current().'?pinned=true');	
 
 		if(!empty($wotverification)){
 			$docs->setMetaData('wot-verification', $wotverification);
@@ -410,7 +408,6 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		$docs->setMetaData('twitter:widgets:csp', $Twittercsp);	
 		$docs->setMetaData('twitter:card', $twittercards);
 		$docs->setMetaData('twitter:site', '@'.$Twittersite);
-		
 		$docs->setMetaData('twitter:description', $desciption);
 		$docs->setMetaData('twitter:image:src', $tw_pix);
 		$docs->setMetaData('twitter:domain', $_SERVER['SERVER_NAME']);
@@ -472,7 +469,6 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		$docs->setMetaData('twitter:widgets:autoload', $Twitterautoload);	
 		$docs->setMetaData('twitter:dnt', $Twitterdnt);	
 		$docs->setMetaData('twitter:widgets:csp', $Twittercsp);	
-		
 		$docs->setMetaData('twitter:card', $twittercards);
 		$docs->setMetaData('twitter:site', '@'.$Twittersite);
 		$docs->setMetaData('twitter:creator', '@'.$TwitterCreate);
@@ -505,7 +501,6 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		$docs->setMetaData('twitter:widgets:autoload', $Twitterautoload);	
 		$docs->setMetaData('twitter:dnt', $Twitterdnt);	
 		$docs->setMetaData('twitter:widgets:csp', $Twittercsp);	
-		
 		$docs->setMetaData('twitter:card', $twittercards);
 		$docs->setMetaData('twitter:site', '@'.$Twittersite);
 		$docs->setMetaData('twitter:creator', '@'.$TwitterCreate);
@@ -535,7 +530,6 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		$docs->setMetaData('twitter:widgets:autoload', $Twitterautoload);	
 		$docs->setMetaData('twitter:dnt', $Twitterdnt);	
 		$docs->setMetaData('twitter:widgets:csp', $Twittercsp);	
-	
 		$docs->setMetaData('twitter:card', $twittercards);
 		$docs->setMetaData('twitter:site', '@'.$Twittersite);
 		$docs->setMetaData('twitter:creator', '@'.$TwitterCreate);
@@ -587,7 +581,6 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		$docs->setMetaData('twitter:widgets:autoload', $Twitterautoload);	
 		$docs->setMetaData('twitter:dnt', $Twitterdnt);	
 		$docs->setMetaData('twitter:widgets:csp', $Twittercsp);	
-		
 		$docs->setMetaData('twitter:card', $twittercards);	
 		$docs->setMetaData('twitter:site', '@'.$Twittersite);
 		$docs->setMetaData('twitter:creator', '@'.$TwitterCreate);
@@ -618,10 +611,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.JURI::current().'">');
 		}
 /*********************[ AUTRES/LINK ]************************/
 
-$docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.JURI::base().'dublincore.rdf">
+$docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.JUri::base().'dublincore.rdf">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="profile" href="http://dublincore.org/documents/2008/08/04/dc-html/">
-<link type="text/plain" rel="author" href="'.JURI::base().'humans.txt">
+<link type="text/plain" rel="author" href="'.JUri::base().'humans.txt">
 <meta prefix="fb: http://ogp.me/ns/fb#" property="fb:app_id" content="'.$fbapp_idopgme.'">' );
 
 
@@ -632,7 +625,7 @@ $docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.JURI::
 		$docs->setMetaData( 'MSThemeCompatible', 'yes' );
 		$docs->setMetaData( 'presdate', date("m-d-Y") );
 		$docs->setMetaData( 'host', $_SERVER['SERVER_NAME'] );		
-		$docs->setMetaData( 'linkage', JURI::base() );			
+		$docs->setMetaData( 'linkage', JUri::base() );			
 		$docs->setMetaData( 'msapplication-tap-highlight', 'yes' );	
 		$docs->setMetaData( 'DP.PopRank', '2.00000' );	
 		$docs->setMetaData( 'msapplication-window', 'width=250;height=250' );	
@@ -660,21 +653,21 @@ $docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.JURI::
 /*********************[ AUTRES analystic ]************************/
 
 if(!empty($gganalystic_UA)){ 
-	$docs->addCustomTag('<script>{function(i,s,o,g,r,a,m){i[\'GoogleAnalyticsObject\']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,\'script\',\'//www.google-analytics.com/analytics.js\',\'ga\'); ga(\'create\', \''.$gganalystic_UA.'\', \''.$gganalystic.'\'); ga(\'send\', \'pageview\');</script>	<link rel="shortlink" href="'.JURI::base().'">'); 
+	$docs->addCustomTag('<script async src="https://www.googletagmanager.com/gtag/js?id='.$gganalystic_UA.'"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag(\'js\', new Date()); gtag(\'config\', \''.$gganalystic_UA.'\'); gtag(\'send\', \'pageview\');</script>'); 
 }
-
+$docs->addCustomTag('<link rel="shortlink" href="'.JUri::base().'">'); 
 
 if(!empty($optimizelyKEYjs)){ $docs->addCustomTag('<script src="//cdn.optimizely.com/js/'.$optimizelyKEYjs.'.js"></script>'); }
 
 //PIWIK
 if($show_piwik == 1){
 	
-	echo '<script>var _paq = _paq || []; _paq.push(["setDocumentTitle", document.domain + "/" + document.title]); _paq.push(["setCookieDomain", "'.$setCookieDomain_piwik.'"]); _paq.push(["setDomains", ["'.$setCookieDomain_piwik.'"]]); _paq.push(["setCustomVariable", 1, "type", "client", "visit"]); _paq.push(["setDoNotTrack", true]); _paq.push(["alcoolisables"]); _paq.push([\'trackPageView\']); _paq.push([\'enableLinkTracking\']); (function() { var u="https://'.$urldomain_piwik_interne.'"; _paq.push([\'setTrackerUrl\', u+\'piwik.php\']); _paq.push([\'setSiteId\', '.$idsite_piwik.']); var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s); })();</script><noscript><p><img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0;" alt="Tracker visitor intern with Piwik on '.JURI::base().'"></p></noscript>';
+	echo '<script>var _paq = _paq || []; _paq.push(["setDocumentTitle", document.domain + "/" + document.title]); _paq.push(["setCookieDomain", "'.$setCookieDomain_piwik.'"]); _paq.push(["setDomains", ["'.$setCookieDomain_piwik.'"]]); _paq.push(["setCustomVariable", 1, "type", "client", "visit"]); _paq.push(["setDoNotTrack", true]); _paq.push(["alcoolisables"]); _paq.push([\'trackPageView\']); _paq.push([\'enableLinkTracking\']); (function() { var u="https://'.$urldomain_piwik_interne.'"; _paq.push([\'setTrackerUrl\', u+\'piwik.php\']); _paq.push([\'setSiteId\', '.$idsite_piwik.']); var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s); })();</script><noscript><p><img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0;" alt="Tracker visitor intern with Piwik on '.JUri::base().'"></p></noscript>';
 	
 
 }
 if($show_piwik == 2){
-echo '<img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0" alt="Tracker visitor interne with Piwik on '.JURI::base().'">';	
+echo '<img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0" alt="Tracker visitor interne with Piwik on '.JUri::base().'">';	
 	
 }
 /*********************[ AUTRES Smartphone/Mobile ]************************/
@@ -686,11 +679,11 @@ if($show_mobile == 1){
 }	
 		if($doYouHave_AffilateApple == 1){ 
 				if(!empty($myAffiliateDataapps) AND !empty($idiphoneapps)){ 
-					$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', affiliate-data='.$myAffiliateDataapps.', app-argument='.JURI::base()); 
+					$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', affiliate-data='.$myAffiliateDataapps.', app-argument='.JUri::base()); 
 				}
 		} else if($doYouHave_AffilateApple == 2) {
 			if(!empty($idiphoneapps)){ 
-						$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', app-argument='.JURI::base()); 
+						$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', app-argument='.JUri::base()); 
 			}
 		}
 if(!empty($logoimg_mobile_startup)){
@@ -732,41 +725,41 @@ if(!empty($pinned8_IEconfig)){
 	$docs->setMetaData('msapplication-config', $pinned8_IEconfig);  	
 }
 /*********************[ Jump List "Tasks" for Pinned Sites on windows 7 ]************************/
-$docs->setMetaData('msapplication-task', 'name='.$sitename.';action-uri='.JURI::root().';icon-uri='.JURI::root().$JltaskIcons_final); //final
+$docs->setMetaData('msapplication-task', 'name='.$sitename.';action-uri='.JUri::root().';icon-uri='.JUri::root().$JltaskIcons_final); //final
 if(!empty($JltaskNames_1) AND !empty($JltaskPages_1)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_1.';action-uri='.$JltaskPages_1.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_1.';action-uri='.$JltaskPages_1.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_2) AND !empty($JltaskPages_2)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_2.';action-uri='.$JltaskPages_2.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_2.';action-uri='.$JltaskPages_2.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_3) AND !empty($JltaskPages_3)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_3.';action-uri='.$JltaskPages_3.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_3.';action-uri='.$JltaskPages_3.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_4) AND !empty($JltaskPages_4)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_4.';action-uri='.$JltaskPages_4.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_4.';action-uri='.$JltaskPages_4.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_5) AND !empty($JltaskPages_5)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_5.';action-uri='.$JltaskPages_5.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_5.';action-uri='.$JltaskPages_5.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_6) AND !empty($JltaskPages_6)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_6.';action-uri='.$JltaskPages_6.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_6.';action-uri='.$JltaskPages_6.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_7) AND !empty($JltaskPages_7)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_7.';action-uri='.$JltaskPages_7.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_7.';action-uri='.$JltaskPages_7.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_8) AND !empty($JltaskPages_8)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_8.';action-uri='.$JltaskPages_8.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_8.';action-uri='.$JltaskPages_8.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_9) AND !empty($JltaskPages_9)){	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_9.';action-uri='.$JltaskPages_9.';icon-uri='.JURI::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_9.';action-uri='.$JltaskPages_9.';icon-uri='.JUri::root().$JltaskIcons_final); //final
 }
 
 /*********************[ AUTRES (Front-End Output Show) ]************************/
