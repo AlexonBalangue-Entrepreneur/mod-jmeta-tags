@@ -2,9 +2,9 @@
 /**
  * @package	Module for Joomla!
  * @subpackage  mod_metatags
- * @version	4.2
+ * @version	4.3
  * @author	AlexonBalangue.me
- * @copyright	(C) 2012-2016 Alexon Balangue. All rights reserved.
+ * @copyright	(C) 2012-2018 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
@@ -18,14 +18,14 @@ use Joomla\Registry\Registry;
 	$docs->setGenerator(null);//remove generator
 		$sitename = $gconfigs->get('sitename');
 		$titles = htmlspecialchars($docs->getTitle(), ENT_COMPAT, 'UTF-8');
-		$site_url = JURI::current();
+		$site_url = JUri::current();
 		$Keyword = htmlspecialchars($gconfigs->get('MetaKeys'), ENT_COMPAT, 'UTF-8');
 		$auteur = $params->get('author-userid-website'); //$app->getCfg('MetaAuthor');
 		$desciption = htmlspecialchars($docs->getDescription(), ENT_COMPAT, 'UTF-8');
 	
 		$language  = substr($docs->language, 0, 2); #JFactory::getLanguage()->getTag()
-		$site_root = JURI::root();
-		$site_base = JURI::base();
+		$site_root = JUri::root();
+		$site_base = JUri::base();
 		//$site_all = $params->get('protocoles').'://'.$_SERVER['SERVER_NAME'].'/';
 		
 		$custom_link_jsonjd_search  = $params->get('jsonjd-search');
