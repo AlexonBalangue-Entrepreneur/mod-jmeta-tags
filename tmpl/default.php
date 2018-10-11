@@ -10,9 +10,7 @@
  */
 defined('_JEXEC') or die;
 
-?>
 
-<?php
 /*********************[ JSON LD ]************************/
 if($jsonLD_type == 'json-ld-person'){
 $docs->addScriptDeclaration('{

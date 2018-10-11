@@ -10,6 +10,7 @@
 
 defined('_JEXEC') or die;
 use Joomla\Registry\Registry;
+use Joomla\CMS\Helper\ModuleHelper;
 
 //webutation-site-verification
 	$app = JFactory::getApplication();
