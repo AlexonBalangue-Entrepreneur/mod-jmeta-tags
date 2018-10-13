@@ -2,31 +2,38 @@
 /**
  * @package	Module for Joomla!
  * @subpackage  mod_metatags
- * @version	4.3
+ * @version	4.3.1
  * @author	AlexonBalangue.me
  * @copyright	(C) 2012-2018 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
 defined('_JEXEC') or die;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Application;
+use Joomla\CMS\Document\Document;
 use Joomla\Registry\Registry;
 use Joomla\CMS\Helper\ModuleHelper;
 
 //webutation-site-verification
-	$app = JFactory::getApplication();
-	$docs = JFactory::getDocument();
-	$gconfigs = JFactory::getConfig();
+	$app = Factory::getApplication();
+	$docs = Factory::getDocument();
+	$gconfigs = Factory::getConfig();
+	$lang = Factory::getLanguage();
 	$docs->setGenerator(null);//remove generator
-		$sitename = $gconfigs->get('sitename');
+		$sitename = $app->get('sitename');
 		$titles = htmlspecialchars($docs->getTitle(), ENT_COMPAT, 'UTF-8');
-		$site_url = JUri::current();
+		$site_url = Uri::current();
 		$Keyword = htmlspecialchars($gconfigs->get('MetaKeys'), ENT_COMPAT, 'UTF-8');
 		$auteur = $params->get('author-userid-website'); //$app->getCfg('MetaAuthor');
 		$desciption = htmlspecialchars($docs->getDescription(), ENT_COMPAT, 'UTF-8');
 	
-		$language  = substr($docs->language, 0, 2); #JFactory::getLanguage()->getTag()
-		$site_root = JUri::root();
-		$site_base = JUri::base();
+		$language  = substr($lang->getTag(), 0, 2); #JFactory::getLanguage()->getTag()
+		$site_root = Uri::root();
+		$site_base = Uri::base();
 		//$site_all = $params->get('protocoles').'://'.$_SERVER['SERVER_NAME'].'/';
 		
 		$custom_link_jsonjd_search  = $params->get('jsonjd-search');
@@ -230,4 +237,4 @@ use Joomla\CMS\Helper\ModuleHelper;
 		$gtagsmanager  = $params->get('gtagsmanager');
 		
 		
-require JModuleHelper::getLayoutPath('mod_metatags', $params->get('layout', 'default'));
+require ModuleHelper::getLayoutPath('mod_metatags', $params->get('layout', 'default'));

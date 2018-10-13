@@ -3,13 +3,18 @@
 /**
  * @package	Module for Joomla!
  * @subpackage  mod_metatags
- * @version	4.3
+ * @version	4.3.1
  * @author	AlexonBalangue.me
  * @copyright	(C) 2012-2018 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 defined('_JEXEC') or die;
-
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Application;
+use Joomla\CMS\Document\Document;
 
 /*********************[ JSON LD ]************************/
 if($jsonLD_type == 'json-ld-person'){
@@ -24,7 +29,7 @@ $docs->addScriptDeclaration('{
 		"telephone": "'.$JsonLD_person_telephone.'",
 		"description": "'.$desciption.'",
 		"image": "'.$JsonLD_person_mediaimage.'",
-		"url": "'.JUri::base().'",
+		"url": "'.Uri::base().'",
 		"address": {
 			"@type": "PostalAddress",
 			"streetAddress": "'.$CoB_StreetAddress.'",
@@ -85,7 +90,7 @@ $docs->addScriptDeclaration('{
 	"telephone": "'.$JsonLD_organisation_telephone.'",
 	"description": "'.$desciption.'",
 	"image": "'.$JsonLD_organisation_medialogo.'",
-	"url": "'.JUri::base().'",
+	"url": "'.Uri::base().'",
 	"address": { 
 		"@type": "PostalAddress",
 		"streetAddress": "'.$CoB_StreetAddress.'",
@@ -117,10 +122,10 @@ $docs->addScriptDeclaration('{
 if($jsonLD_type == 'json-ld-custom'){
 	$docs->addScriptDeclaration($jsonLD_custom, 'application/ld+json');
 }
-	$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "WebSite", "url": "'.$site_base.'", "potentialAction": {"@type": "SearchAction","target": "'.JUri::root(true).'/index.php?option=com_finder&view=search&lang='.$language.'?q={search_term_string}","query-input": "required name=search_term_string"}}', 'application/ld+json');
+	$docs->addScriptDeclaration('{"@context": "http://schema.org","@type": "WebSite", "url": "'.$site_base.'", "potentialAction": {"@type": "SearchAction","target": "'.Uri::root(true).'/index.php?option=com_finder&view=search&lang='.$language.'?q={search_term_string}","query-input": "required name=search_term_string"}}', 'application/ld+json');
 
 /*********************[ META-TAGS SEO BASIC/ADVANCE ]************************/
-$docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">'); 
+$docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">'); 
 		if(!empty($CSP)){ 
 			$docs->setMetaData( 'Content-Security-Policy', $CSP, true ); 
 			$docs->setMetaData( 'Content-Security-Policy-Report-Only', $CSP, true ); 
@@ -140,7 +145,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">');
 			$docs->setMetaData('ZOOMTITLE', $sitename.' '.$titles);
 			$docs->setMetaData('shareaholic:site_name', $sitename.' '.$titles);
 		
-		$docs->setMetaData('shareaholic:url', JUri::current());
+		$docs->setMetaData('shareaholic:url', Uri::current());
 		$docs->setMetaData('shareaholic:language', $language);
 		if(!empty($desciption)){
 			$docs->setMetaData('DC.description', $desciption);
@@ -156,14 +161,14 @@ $docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">');
 		$docs->setMetaData( 'FSPageDescription', $desciption );
 		
 		}
-		$docs->setMetaData( 'DCS.dcsuri', JUri::current() );
+		$docs->setMetaData( 'DCS.dcsuri', Uri::current() );
 		$docs->setMetaData( 'DC.language', $language );
 		$docs->setMetaData( 'dcterms.language', $language );
 		$docs->setMetaData( 'msapplication-starturl', './' );
 		$docs->setMetaData( 'msapplication-tooltip', $sitename.' '.$titles );
 		$docs->setMetaData( 'msapplication-window', 'width=1024;height=768' );
 		$docs->setMetaData( 'SKYPE_TOOLBAR', 'SKYPE_TOOLBAR_PARSER_COMPATIBLE' );
-		$docs->setMetaData( 'startIndex', JUri::current() );
+		$docs->setMetaData( 'startIndex', Uri::current() );
 		
 			$docs->setMetaData('DC.subject', $Keyword);
 			$docs->setMetaData('fdse-keywords', $Keyword);
@@ -236,56 +241,56 @@ $docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">');
 			$docs->setMetaData('shareaholic:article_author', $auteur );
 			
 		}
-		$docs->setMetaData('shareaholic:shareable_page', JUri::current() );
+		$docs->setMetaData('shareaholic:shareable_page', Uri::current() );
 		
 			$docs->setMetaData('DC.language', $language);
 			$docs->setMetaData('gwt:property', 'locale='.$language);
 			
-		$docs->setMetaData('mobile-agent', 'format=html5; url='.JUri::current());
+		$docs->setMetaData('mobile-agent', 'format=html5; url='.Uri::current());
 		if(!empty($expires)){
 			$docs->setMetaData('expires', $expires);
 			
 		}
 		if(!empty($classification)){
 			switch($classification){
-						case "1" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_1')); break;
-						case "2" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_2')); break;
-						case "3" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_3')); break;
-						case "4" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_4')); break;
-						case "5" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_5')); break;
-						case "6" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_6')); break;
-						case "7" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_7')); break;
-						case "8" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_8')); break;
-						case "9" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_9')); break;
-						case "10" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_10')); break;
-						case "11" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_11')); break;
-						case "12" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_12')); break;
-						case "13" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_13')); break;
-						case "14" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_14')); break;
-						case "15" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_15')); break;
-						case "16" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_16')); break;
-						case "17" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_17')); break;
-						case "18" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_18')); break;
-						case "19" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_19')); break;
-						case "20" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_20')); break;
-						case "21" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_21')); break;
-						case "22" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_22')); break;
-						case "23" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_23')); break;
-						case "24" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_24')); break;
-						case "25" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_25')); break;
-						case "26" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_26')); break;
-						case "27" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_27')); break;
-						case "28" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_28')); break;
-						case "29" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_29')); break;
-						case "30" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_30')); break;
-						case "31" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_31')); break;
-						case "32" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_32')); break;
-						case "33" : $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_33')); break;
+						case "1" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_1')); break;
+						case "2" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_2')); break;
+						case "3" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_3')); break;
+						case "4" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_4')); break;
+						case "5" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_5')); break;
+						case "6" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_6')); break;
+						case "7" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_7')); break;
+						case "8" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_8')); break;
+						case "9" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_9')); break;
+						case "10" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_10')); break;
+						case "11" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_11')); break;
+						case "12" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_12')); break;
+						case "13" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_13')); break;
+						case "14" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_14')); break;
+						case "15" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_15')); break;
+						case "16" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_16')); break;
+						case "17" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_17')); break;
+						case "18" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_18')); break;
+						case "19" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_19')); break;
+						case "20" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_20')); break;
+						case "21" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_21')); break;
+						case "22" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_22')); break;
+						case "23" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_23')); break;
+						case "24" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_24')); break;
+						case "25" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_25')); break;
+						case "26" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_26')); break;
+						case "27" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_27')); break;
+						case "28" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_28')); break;
+						case "29" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_29')); break;
+						case "30" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_30')); break;
+						case "31" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_31')); break;
+						case "32" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_32')); break;
+						case "33" : $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_33')); break;
 			}
 			/*****
 			 * // Show output number case not this methode
 			 * $classification_final = $classification;
-			 * $docs->setMetaData('classification', JText::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_'));
+			 * $docs->setMetaData('classification', Text::_('JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_'));
 			 * 
 			 *****/ 
 		}
@@ -326,7 +331,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">');
 		/**Namespace URI: http://ogp.me/ns/website#**/
 		$docs->addCustomTag( '<meta property="og:title" content="'.$sitename.'">
 			<meta property="og:type" content="'.$ogtypes.'">
-			<meta property="og:url" content="'.JUri::current().'">
+			<meta property="og:url" content="'.Uri::current().'">
 			<meta property="shareaholic:image" content="'.$ogpimages.'">
 			<meta property="og:image" content="'.$ogpimages.'">
 			<meta property="og:locale" content="'.$language.'">
@@ -337,7 +342,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">');
 			<meta property="og:profile_id" content="'.$fb_profils.'">
 			<meta property="fb:admins" content="'.$fbapp_admin.'">
 			<meta property="fb:app_id" content="'.$fbapp_idopgme.'">
-			<link rel="search" href="'.JUri::current().'">
+			<link rel="search" href="'.Uri::current().'">
 			<link rel="image_src" href="'.$logoimg.'">' );
 		
 /*********************[ META-TAGS Reputation/Security/Bank ]************************/
@@ -345,9 +350,9 @@ $docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">');
 		if(!empty($bitly)){
 			$docs->setMetaData('bitly-verification', $bitly);
 		}
-			$docs->setMetaData('fdse-index-as', JUri::current());
-			$docs->setMetaData('Identifier-URL', JUri::current());
-			$docs->setMetaData('msapplication-starturl', JUri::current().'?pinned=true');	
+			$docs->setMetaData('fdse-index-as', Uri::current());
+			$docs->setMetaData('Identifier-URL', Uri::current());
+			$docs->setMetaData('msapplication-starturl', Uri::current().'?pinned=true');	
 
 		if(!empty($wotverification)){
 			$docs->setMetaData('wot-verification', $wotverification);
@@ -609,10 +614,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.JUri::current().'">');
 		}
 /*********************[ AUTRES/LINK ]************************/
 
-$docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.JUri::base().'dublincore.rdf">
+$docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.Uri::base().'dublincore.rdf">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="profile" href="http://dublincore.org/documents/2008/08/04/dc-html/">
-<link type="text/plain" rel="author" href="'.JUri::base().'humans.txt">
+<link type="text/plain" rel="author" href="'.Uri::base().'humans.txt">
 <meta prefix="fb: http://ogp.me/ns/fb#" property="fb:app_id" content="'.$fbapp_idopgme.'">' );
 
 
@@ -623,7 +628,7 @@ $docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.JUri::
 		$docs->setMetaData( 'MSThemeCompatible', 'yes' );
 		$docs->setMetaData( 'presdate', date("m-d-Y") );
 		$docs->setMetaData( 'host', $_SERVER['SERVER_NAME'] );		
-		$docs->setMetaData( 'linkage', JUri::base() );			
+		$docs->setMetaData( 'linkage', Uri::base() );			
 		$docs->setMetaData( 'msapplication-tap-highlight', 'yes' );	
 		$docs->setMetaData( 'DP.PopRank', '2.00000' );	
 		$docs->setMetaData( 'msapplication-window', 'width=250;height=250' );	
@@ -653,19 +658,19 @@ $docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.JUri::
 if(!empty($gganalystic_UA)){ 
 	$docs->addCustomTag('<script async src="https://www.googletagmanager.com/gtag/js?id='.$gganalystic_UA.'"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag(\'js\', new Date()); gtag(\'config\', \''.$gganalystic_UA.'\'); gtag(\'send\', \'pageview\');</script>'); 
 }
-$docs->addCustomTag('<link rel="shortlink" href="'.JUri::base().'">'); 
+$docs->addCustomTag('<link rel="shortlink" href="'.Uri::base().'">'); 
 
 if(!empty($optimizelyKEYjs)){ $docs->addCustomTag('<script src="//cdn.optimizely.com/js/'.$optimizelyKEYjs.'.js"></script>'); }
 
 //PIWIK
 if($show_piwik == 1){
 	
-	echo '<script>var _paq = _paq || []; _paq.push(["setDocumentTitle", document.domain + "/" + document.title]); _paq.push(["setCookieDomain", "'.$setCookieDomain_piwik.'"]); _paq.push(["setDomains", ["'.$setCookieDomain_piwik.'"]]); _paq.push(["setCustomVariable", 1, "type", "client", "visit"]); _paq.push(["setDoNotTrack", true]); _paq.push(["alcoolisables"]); _paq.push([\'trackPageView\']); _paq.push([\'enableLinkTracking\']); (function() { var u="https://'.$urldomain_piwik_interne.'"; _paq.push([\'setTrackerUrl\', u+\'piwik.php\']); _paq.push([\'setSiteId\', '.$idsite_piwik.']); var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s); })();</script><noscript><p><img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0;" alt="Tracker visitor intern with Piwik on '.JUri::base().'"></p></noscript>';
+	echo '<script>var _paq = _paq || []; _paq.push(["setDocumentTitle", document.domain + "/" + document.title]); _paq.push(["setCookieDomain", "'.$setCookieDomain_piwik.'"]); _paq.push(["setDomains", ["'.$setCookieDomain_piwik.'"]]); _paq.push(["setCustomVariable", 1, "type", "client", "visit"]); _paq.push(["setDoNotTrack", true]); _paq.push(["alcoolisables"]); _paq.push([\'trackPageView\']); _paq.push([\'enableLinkTracking\']); (function() { var u="https://'.$urldomain_piwik_interne.'"; _paq.push([\'setTrackerUrl\', u+\'piwik.php\']); _paq.push([\'setSiteId\', '.$idsite_piwik.']); var d=document, g=d.createElement(\'script\'), s=d.getElementsByTagName(\'script\')[0]; g.type=\'text/javascript\'; g.async=true; g.defer=true; g.src=u+\'piwik.js\'; s.parentNode.insertBefore(g,s); })();</script><noscript><p><img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0;" alt="Tracker visitor intern with Piwik on '.Uri::base().'"></p></noscript>';
 	
 
 }
 if($show_piwik == 2){
-echo '<img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0" alt="Tracker visitor interne with Piwik on '.JUri::base().'">';	
+echo '<img src="https://'.$urldomain_piwik_interne.'piwik.php?idsite='.$idsite_piwik.'&amp;rec=1" style="border:0" alt="Tracker visitor interne with Piwik on '.Uri::base().'">';	
 	
 }
 /*********************[ AUTRES Smartphone/Mobile ]************************/
@@ -677,11 +682,11 @@ if($show_mobile == 1){
 }	
 		if($doYouHave_AffilateApple == 1){ 
 				if(!empty($myAffiliateDataapps) AND !empty($idiphoneapps)){ 
-					$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', affiliate-data='.$myAffiliateDataapps.', app-argument='.JUri::base()); 
+					$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', affiliate-data='.$myAffiliateDataapps.', app-argument='.Uri::base()); 
 				}
 		} else if($doYouHave_AffilateApple == 2) {
 			if(!empty($idiphoneapps)){ 
-						$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', app-argument='.JUri::base()); 
+						$docs->setMetaData('apple-itunes-app','app-id='.$idiphoneapps.', app-argument='.Uri::base()); 
 			}
 		}
 if(!empty($logoimg_mobile_startup)){
@@ -723,41 +728,41 @@ if(!empty($pinned8_IEconfig)){
 	$docs->setMetaData('msapplication-config', $pinned8_IEconfig);  	
 }
 /*********************[ Jump List "Tasks" for Pinned Sites on windows 7 ]************************/
-$docs->setMetaData('msapplication-task', 'name='.$sitename.';action-uri='.JUri::root().';icon-uri='.JUri::root().$JltaskIcons_final); //final
+$docs->setMetaData('msapplication-task', 'name='.$sitename.';action-uri='.Uri::root().';icon-uri='.Uri::root().$JltaskIcons_final); //final
 if(!empty($JltaskNames_1) AND !empty($JltaskPages_1)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_1.';action-uri='.$JltaskPages_1.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_1.';action-uri='.$JltaskPages_1.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_2) AND !empty($JltaskPages_2)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_2.';action-uri='.$JltaskPages_2.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_2.';action-uri='.$JltaskPages_2.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_3) AND !empty($JltaskPages_3)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_3.';action-uri='.$JltaskPages_3.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_3.';action-uri='.$JltaskPages_3.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_4) AND !empty($JltaskPages_4)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_4.';action-uri='.$JltaskPages_4.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_4.';action-uri='.$JltaskPages_4.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_5) AND !empty($JltaskPages_5)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_5.';action-uri='.$JltaskPages_5.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_5.';action-uri='.$JltaskPages_5.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_6) AND !empty($JltaskPages_6)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_6.';action-uri='.$JltaskPages_6.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_6.';action-uri='.$JltaskPages_6.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_7) AND !empty($JltaskPages_7)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_7.';action-uri='.$JltaskPages_7.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_7.';action-uri='.$JltaskPages_7.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_8) AND !empty($JltaskPages_8)){
 	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_8.';action-uri='.$JltaskPages_8.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_8.';action-uri='.$JltaskPages_8.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 if(!empty($JltaskNames_9) AND !empty($JltaskPages_9)){	
-	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_9.';action-uri='.$JltaskPages_9.';icon-uri='.JUri::root().$JltaskIcons_final); //final
+	$docs->setMetaData('msapplication-task', 'name='.$JltaskNames_9.';action-uri='.$JltaskPages_9.';icon-uri='.Uri::root().$JltaskIcons_final); //final
 }
 
 /*********************[ AUTRES (Front-End Output Show) ]************************/
