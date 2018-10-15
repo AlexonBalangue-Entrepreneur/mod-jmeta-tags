@@ -14,7 +14,7 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Application;
-use Joomla\CMS\Document\Document;
+use Joomla\CMS\Document;
 use Joomla\Registry\Registry;
 use Joomla\CMS\Helper\ModuleHelper;
 
@@ -144,7 +144,7 @@ use Joomla\CMS\Helper\ModuleHelper;
 		$CoB_FaxNumber = $params->get('Co-B_FaxNumber');
 		$CoB_NetworkAddress = $params->get('Co-B_NetworkAddress');
 		/**autres**/
-		$linkstantkey = $params->get('linkstant');
+		
 		$googletranslatecustomization = $params->get('googletranslatecustomization');
 		$gganalystic = $params->get('analyse-domainname');
 		$gganalystic_UA = $params->get('analyse-UA');
@@ -192,8 +192,6 @@ use Joomla\CMS\Helper\ModuleHelper;
 		$pinned8_badgebrowser = $params->get('pinned8_badgebrowser');		
 		$pinned8_IEconfig = $params->get('pinned8_IEconfig');		
 		$doYouHave_AffilateApple = $params->get('doYouHave_AffilateApple');
-		$myAccountGoogleplus = $params->get('myAccountGoogleplus');
-		$viglink_idsite = $params->get('viglink_idsite');
 		$lxwfr_backlink = $params->get('lxwfr_backlink');
 		$APPID_webstoreGoogle = $params->get('APPID_webstoreGoogle');
 		

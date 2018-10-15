@@ -2,12 +2,12 @@
 <extension type="module" version="3.8" client="site" method="upgrade">
 	<name>mod_metatags</name>
 	<author>Alexon Balangue</author>
-	<creationDate>13 september 2018</creationDate>
+	<creationDate>15 september 2018</creationDate>
 	<copyright>Copyright (C) 2012-2018. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>contacter@alexonbalangue.me</authorEmail>
 	<authorUrl>www.alexonbalangue.me</authorUrl>
-	<version>4.3.1</version>
+	<version>4.3.2</version>
 	<description>MOD_METATAGS_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_metatags">mod_metatags.php</filename>
@@ -289,12 +289,7 @@
 						<option value="no">JYes</option>
 						<option value="yes">JNo</option>
 				</field>
-				<field 
-					name="linkstant"
-					type="text"
-					default=""
-					label="JFIELD_MOD_METATAGS_LINKSTANT_LABEL"
-					description="JFIELD_MOD_METATAGS_LINKSTANT_DESC" />
+				
 				<field 
 					name="sefeweb-norton"
 					type="text"
@@ -747,12 +742,6 @@
 					label="MOD_METATAGS_FBPROFILSID_LABEL"
 					description="MOD_METATAGS_FBPROFILSID_DESC" />
 				<field 
-					name="myAccountGoogleplus"
-					type="text"
-					default=""
-					label="Google+ (ID)"
-					description="JFIELD_MOD_METATAGS_GOOGLEPLUSACCOUNT_DESC" />
-				<field 
 					name="APPID_webstoreGoogle"
 					type="text"
 					default=""
@@ -798,13 +787,7 @@
 			<fieldset name="mod_meta-backlinks" label="Backlinks">
 				<field name="backlinks-frontendh" type="textarea" default="" label="Enter some html (HEAD)" description="" rows="10" cols="5" filter="raw"/>
 				<field name="backlinks-frontendf" type="textarea" default="" label="Enter some html (BODY)" description="" rows="10" cols="5" filter="raw"/>
-				
-				<field 
-					name="viglink_idsite"
-					type="text"
-					default=""
-					label="viglink ID"
-					description="" />		
+					
 			</fieldset>
 			<fieldset name="mod_meta-contactbusiness" label="Contact Business or individual">
 				<field 
@@ -1026,7 +1009,6 @@
 					default=""
 					label="Date week/date semaine (Json-LD)"
 					description="">	
-						<option value="">JFIELD_MOD_METATAGS_CLASSIFICATION_OPTION_0</option>
 						<option value="1">Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday</option>
 						<option value="2">Monday</option>
 						<option value="3">Monday, Tuesday</option>

@@ -14,8 +14,11 @@ use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Application;
-use Joomla\CMS\Document\Document;
+use Joomla\CMS\Document;
 
+		$proto_fi = isset($_SERVER["HTTPS"]) ? 'https' : 'http';
+		$proto_fi .= '://';
+		
 /*********************[ JSON LD ]************************/
 if($jsonLD_type == 'json-ld-person'){
 $docs->addScriptDeclaration('{
@@ -40,41 +43,39 @@ $docs->addScriptDeclaration('{
 	}', 'application/ld+json');
 }
 
-if ($DJsonLDs == '1'){ $DJson = '"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
-elseif ($DJsonLDs == '2'){ $DJson = '"Monday"'; }
-elseif ($DJsonLDs == '3'){ $DJson = '"Monday", "Tuesday"'; }
-elseif ($DJsonLDs == '4'){ $DJson = '"Monday", "Tuesday", "Wednesday"'; }
-elseif ($DJsonLDs == '5'){ $DJson = '"Monday", "Tuesday", "Wednesday", "Friday"'; }
-elseif ($DJsonLDs == '6'){ $DJson = '"Monday", "Tuesday", "Wednesday", "Friday", "Saturday"'; }
-elseif ($DJsonLDs == '7'){ $DJson = '"Monday", "Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"'; }
-elseif ($DJsonLDs == '8'){ $DJson = '"Tuesday"'; }
-elseif ($DJsonLDs == '9'){ $DJson = '"Tuesday", "Wednesday"'; }
-elseif ($DJsonLDs == '10'){ $DJson = '"Tuesday", "Wednesday", "Thursday"'; }
-elseif ($DJsonLDs == '11'){ $DJson = '"Tuesday", "Wednesday", "Thursday", "Friday"'; }
-elseif ($DJsonLDs == '12'){ $DJson = '"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"'; }
-elseif ($DJsonLDs == '13'){ $DJson = '"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
-elseif ($DJsonLDs == '14'){ $DJson = '"Wednesday"'; }
-elseif ($DJsonLDs == '15'){ $DJson = '"Wednesday", "Thursday"'; }
-elseif ($DJsonLDs == '16'){ $DJson = '"Wednesday", "Thursday", "Friday"'; }
-elseif ($DJsonLDs == '17'){ $DJson = '"Wednesday", "Thursday", "Friday", "Saturday"'; }
-elseif ($DJsonLDs == '18'){ $DJson = '"Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
-elseif ($DJsonLDs == '19'){ $DJson = '"Thursday"'; }
-elseif ($DJsonLDs == '20'){ $DJson = '"Thursday", "Friday"'; }
-elseif ($DJsonLDs == '21'){ $DJson = '"Thursday", "Friday", "Saturday"'; }
-elseif ($DJsonLDs == '22'){ $DJson = '"Thursday", "Friday", "Saturday", "Sunday"'; }
-elseif ($DJsonLDs == '23'){ $DJson = '"Friday"'; }
-elseif ($DJsonLDs == '24'){ $DJson = '"Friday", "Saturday"'; }
-elseif ($DJsonLDs == '25'){ $DJson = '"Friday", "Saturday", "Sunday"'; }
-elseif ($DJsonLDs == '26'){ $DJson = '"Saturday"'; }
-elseif ($DJsonLDs == '27'){ $DJson = '"Saturday", "Sunday"'; }
-elseif ($DJsonLDs == '28'){ $DJson = '"Sunday"'; }
-
-
-		if(!empty($JsonLD_opens)){$JopenLD = '"opens": "'.$JsonLD_opens.'",'; } 
-		if(!empty($JsonLD_close)){$JcloseLD = '"close": "'.$JsonLD_close.'"'; }
-
 	
 if($jsonLD_type == 'json-ld-organisation'){
+	
+if ($DJsonLDs == '1'){ $DJsonLDs = '"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '2'){ $DJsonLDs = '"Monday"'; }
+elseif ($DJsonLDs == '3'){ $DJsonLDs = '"Monday", "Tuesday"'; }
+elseif ($DJsonLDs == '4'){ $DJsonLDs = '"Monday", "Tuesday", "Wednesday"'; }
+elseif ($DJsonLDs == '5'){ $DJsonLDs = '"Monday", "Tuesday", "Wednesday", "Friday"'; }
+elseif ($DJsonLDs == '6'){ $DJsonLDs = '"Monday", "Tuesday", "Wednesday", "Friday", "Saturday"'; }
+elseif ($DJsonLDs == '7'){ $DJsonLDs = '"Monday", "Tuesday", "Wednesday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '8'){ $DJsonLDs = '"Tuesday"'; }
+elseif ($DJsonLDs == '9'){ $DJsonLDs = '"Tuesday", "Wednesday"'; }
+elseif ($DJsonLDs == '10'){ $DJsonLDs = '"Tuesday", "Wednesday", "Thursday"'; }
+elseif ($DJsonLDs == '11'){ $DJsonLDs = '"Tuesday", "Wednesday", "Thursday", "Friday"'; }
+elseif ($DJsonLDs == '12'){ $DJsonLDs = '"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"'; }
+elseif ($DJsonLDs == '13'){ $DJsonLDs = '"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '14'){ $DJsonLDs = '"Wednesday"'; }
+elseif ($DJsonLDs == '15'){ $DJsonLDs = '"Wednesday", "Thursday"'; }
+elseif ($DJsonLDs == '16'){ $DJsonLDs = '"Wednesday", "Thursday", "Friday"'; }
+elseif ($DJsonLDs == '17'){ $DJsonLDs = '"Wednesday", "Thursday", "Friday", "Saturday"'; }
+elseif ($DJsonLDs == '18'){ $DJsonLDs = '"Wednesday", "Thursday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '19'){ $DJsonLDs = '"Thursday"'; }
+elseif ($DJsonLDs == '20'){ $DJsonLDs = '"Thursday", "Friday"'; }
+elseif ($DJsonLDs == '21'){ $DJsonLDs = '"Thursday", "Friday", "Saturday"'; }
+elseif ($DJsonLDs == '22'){ $DJsonLDs = '"Thursday", "Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '23'){ $DJsonLDs = '"Friday"'; }
+elseif ($DJsonLDs == '24'){ $DJsonLDs = '"Friday", "Saturday"'; }
+elseif ($DJsonLDs == '25'){ $DJsonLDs = '"Friday", "Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '26'){ $DJsonLDs = '"Saturday"'; }
+elseif ($DJsonLDs == '27'){ $DJsonLDs = '"Saturday", "Sunday"'; }
+elseif ($DJsonLDs == '28'){ $DJsonLDs = '"Sunday"'; }
+
+
 
 $docs->addScriptDeclaration('{
 	"@context": "http://schema.org",
@@ -106,10 +107,10 @@ $docs->addScriptDeclaration('{
 	"openingHoursSpecification": [ { 
 		"@type": "OpeningHoursSpecification",
 		"dayOfWeek": [
-			'.$DJson.'
+			'.$DJsonLDs.'
 		],
-		'.$JopenLD.'
-		'.$JcloseLD.' 
+		"opens": "'.$JsonLD_opens.'",
+		"close": "'.$JsonLD_close.'"
 	}],
 	"contactPoint": [{ 
 		"@type": "ContactPoint", 
@@ -118,7 +119,7 @@ $docs->addScriptDeclaration('{
 		"contactOption": "TollFree",
 		"areaServed": "'.$language.'" 
 	}]
-}', 'application/ld+json');}
+}', 'application/ld+json');
 if($jsonLD_type == 'json-ld-custom'){
 	$docs->addScriptDeclaration($jsonLD_custom, 'application/ld+json');
 }
@@ -213,10 +214,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 		$docs->setMetaData('ZOOMPAGEBOOST', '5');
 		$docs->setMetaData('FSLanguage', $language);
 		if(!empty($DateCreationyyyymmdd)){
-			$docs->setMetaData('Date-Creation-yyyymmdd', explode('-', $DateCreationyyyymmdd));
-			$docs->setMetaData('DC.created', explode('-', $DateCreationyyyymmdd));
-			$docs->setMetaData('dcterms.created ', explode('-', $DateCreationyyyymmdd));
-			$docs->setMetaData( 'creation_date', explode('-', $DateCreationyyyymmdd) );
+			$docs->setMetaData('Date-Creation-yyyymmdd', $DateCreationyyyymmdd);
+			$docs->setMetaData('DC.created', $DateCreationyyyymmdd);
+			$docs->setMetaData('dcterms.created ', $DateCreationyyyymmdd);
+			$docs->setMetaData( 'creation_date', $DateCreationyyyymmdd );
 		}
 		if(!empty($DateRevisionyyyymmdd)){
 			$docs->setMetaData('Date-Revision-yyyymmdd', explode('-', $DateRevisionyyyymmdd));
@@ -299,7 +300,8 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 			
 		}
 		if(!empty($shareaholicsite_idAPI)){
-			$docs->addCustomTag("<script type='text/javascript' src='//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js' data-shr-siteid='".$shareaholicsite_idAPI."' data-cfasync='false' async='async'></script>");
+			
+			HTMLHelper::script($proto_fi.'dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js', array('version' => 'auto', 'relative' => true), array('async' => 'async', 'data-cfasync' => 'false', 'data-shr-siteid' => $shareaholicsite_idAPI)); 
 		}
 		$docs->setMetaData('shareaholic:article_visibility', 'private');
 		if(!empty($shareaholicsite_shareablepage)){ $docs->setMetaData('shareaholic:shareable_page', $shareaholicsite_shareablepage); }
@@ -344,7 +346,6 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 			<meta property="fb:app_id" content="'.$fbapp_idopgme.'">
 			<link rel="search" href="'.Uri::current().'">
 			<link rel="image_src" href="'.$logoimg.'">' );
-		
 /*********************[ META-TAGS Reputation/Security/Bank ]************************/
 
 		if(!empty($bitly)){
@@ -401,7 +402,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 		
 		if($twittercards == 'summary'){
 			
-			if(!empty($TwitterDev)){ $docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); }
+			if(!empty($TwitterDev)){ 
+				$docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); 
+				//$docs->addHeadLink($proto_fi.'twitter.com/'.$TwitterDev, 'me');
+			}
 	
 		$docs->setMetaData('twitter:widgets:theme', $Twitterwidgettheme);	
 		$docs->setMetaData('twitter:widgets:link-color', $TwitterWthemelink);	
@@ -427,7 +431,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 		
 		}
 		if($twittercards == 'summary_large_image'){
-			if(!empty($TwitterDev)){ $docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); }
+			if(!empty($TwitterDev)){ 
+				$docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); 
+				//$docs->addHeadLink($proto_fi.'twitter.com/'.$TwitterDev, 'me');
+			}
 	
 		$docs->setMetaData('twitter:widgets:theme', $Twitterwidgettheme);	
 		$docs->setMetaData('twitter:widgets:link-color', $TwitterWthemelink);	
@@ -464,7 +471,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 		
 		}
 		if($twittercards == 'product'){
-			if(!empty($TwitterDev)){ $docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); }
+			if(!empty($TwitterDev)){ 
+				$docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); 
+				//$docs->addHeadLink($proto_fi.'twitter.com/'.$TwitterDev, 'me');
+			}
 	
 		$docs->setMetaData('twitter:widgets:theme', $Twitterwidgettheme);	
 		$docs->setMetaData('twitter:widgets:link-color', $TwitterWthemelink);	
@@ -496,7 +506,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 		
 		}
 		if($twittercards == 'photo'){
-			if(!empty($TwitterDev)){ $docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); }
+			if(!empty($TwitterDev)){ 
+				$docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); 
+				//$docs->addHeadLink($proto_fi.'twitter.com/'.$TwitterDev, 'me');
+			}
 	
 		$docs->setMetaData('twitter:widgets:theme', $Twitterwidgettheme);	
 		$docs->setMetaData('twitter:widgets:link-color', $TwitterWthemelink);	
@@ -525,7 +538,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 		
 		}
 		if($twittercards == 'app'){
-			if(!empty($TwitterDev)){ $docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); }
+			if(!empty($TwitterDev)){ 
+				$docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); 
+				//$docs->addHeadLink($proto_fi.'twitter.com/'.$TwitterDev, 'me');
+			}
 	
 		$docs->setMetaData('twitter:widgets:theme', $Twitterwidgettheme);	
 		$docs->setMetaData('twitter:widgets:link-color', $TwitterWthemelink);	
@@ -544,7 +560,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 		$docs->setMetaData('twitter:domain', $_SERVER['SERVER_NAME']);
 		}
 		if($twittercards == 'gallery'){
-			if(!empty($TwitterDev)){ $docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); }
+			if(!empty($TwitterDev)){ 
+			$docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); 
+			//$docs->addHeadLink($proto_fi.'twitter.com/'.$TwitterDev, 'me');
+			}
 	
 		$docs->setMetaData('twitter:widgets:theme', $Twitterwidgettheme);	
 		$docs->setMetaData('twitter:widgets:link-color', $TwitterWthemelink);	
@@ -576,7 +595,10 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 		
 		}
 		if($twittercards == 'player'){
-			if(!empty($TwitterDev)){ $docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); }
+			if(!empty($TwitterDev)){ 
+				$docs->addCustomTag('<link rel="me" href="https://twitter.com/'.$TwitterDev.'">'); 
+				//$docs->addHeadLink($proto_fi.'twitter.com/'.$TwitterDev, 'me');
+			}
 	
 		$docs->setMetaData('twitter:widgets:theme', $Twitterwidgettheme);	
 		$docs->setMetaData('twitter:widgets:link-color', $TwitterWthemelink);	
@@ -609,7 +631,7 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 
 /*********************[ Tynt How Copy/Past your website? ]************************/
 		if(!empty($Tynpush)){
-			$docs->addCustomTag( '<script type="text/javascript">if(document.location.protocol==\'http:\'){ var Tynt=Tynt||[];Tynt.push(\''.$Tynpush.'\'); (function(){var s=document.createElement(\'script\');s.async="async";s.type="text/javascript";s.src=\'http://tcr.tynt.com/ti.js\';var h=document.getElementsByTagName(\'script\')[0];h.parentNode.insertBefore(s,h);})();}</script>' );
+			$docs->addScriptDeclaration( 'if(document.location.protocol==\'http:\'){ var Tynt=Tynt||[];Tynt.push(\''.$Tynpush.'\'); (function(){var s=document.createElement(\'script\');s.async="async";s.type="text/javascript";s.src=\'http://tcr.tynt.com/ti.js\';var h=document.getElementsByTagName(\'script\')[0];h.parentNode.insertBefore(s,h);})();}', 'text/javascript' );
 
 		}
 /*********************[ AUTRES/LINK ]************************/
@@ -617,9 +639,13 @@ $docs->addCustomTag('<link rel="canonical" href="'.Uri::current().'">');
 $docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.Uri::base().'dublincore.rdf">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="profile" href="http://dublincore.org/documents/2008/08/04/dc-html/">
-<link type="text/plain" rel="author" href="'.Uri::base().'humans.txt">
 <meta prefix="fb: http://ogp.me/ns/fb#" property="fb:app_id" content="'.$fbapp_idopgme.'">' );
-
+/*
+$docs->addHeadLink(Uri::base().'dublincore.rdf', 'meta', array('type' => 'application/rdf+xml'));
+$docs->addHeadLink(Uri::base().'humans.txt', 'author');
+$docs->addHeadLink($proto_fi.'gmpg.org/xfn/11', 'profile');
+$docs->addHeadLink($proto_fi.'dublincore.org/documents/2008/08/04/dc-html/', 'profile');
+*/
 
 /*********************[ AUTRES  ]************************/
 		$docs->setMetaData('MSSmartTagsPreventParsing', 'true');
@@ -650,17 +676,22 @@ $docs->addCustomTag( '<link rel="meta" type="application/rdf+xml" href="'.Uri::b
 
 /*********************[ AUTRES Traduction ]************************/
 		if(!empty($googletranslatecustomization)){
-			$docs->addCustomTag('<meta name="google-translate-customization" content="'.$googletranslatecustomization.'">' );
+			//$docs->addCustomTag('<meta name="google-translate-customization" content="'.$googletranslatecustomization.'">' );
+			$docs->setMetaData( 'google-translate-customization', $googletranslatecustomization );
 		}
 
 /*********************[ AUTRES analystic ]************************/
 
 if(!empty($gganalystic_UA)){ 
-	$docs->addCustomTag('<script async src="https://www.googletagmanager.com/gtag/js?id='.$gganalystic_UA.'"></script><script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag(\'js\', new Date()); gtag(\'config\', \''.$gganalystic_UA.'\'); gtag(\'send\', \'pageview\');</script>'); 
+	HTMLHelper::script($proto_fi.'www.googletagmanager.com/gtag/js?id='.$gganalystic_UA, array('async' => 'async'));
+	$docs->addScriptDeclaration('window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag(\'js\', new Date()); gtag(\'config\', \''.$gganalystic_UA.'\'); gtag(\'send\', \'pageview\');');
 }
-$docs->addCustomTag('<link rel="shortlink" href="'.Uri::base().'">'); 
-
-if(!empty($optimizelyKEYjs)){ $docs->addCustomTag('<script src="//cdn.optimizely.com/js/'.$optimizelyKEYjs.'.js"></script>'); }
+//$docs->addCustomTag('<link rel="shortlink" href="'.Uri::base().'">'); 
+$docs->addHeadLink(Uri::base(), 'shortlink');
+if(!empty($optimizelyKEYjs)){ 
+	//$docs->addCustomTag('<script src="//cdn.optimizely.com/js/'.$optimizelyKEYjs.'.js"></script>'); 
+	HTMLHelper::script($proto_fi.'cdn.optimizely.com/js/'.$optimizelyKEYjs.'.js');
+}
 
 //PIWIK
 if($show_piwik == 1){
@@ -691,21 +722,28 @@ if($show_mobile == 1){
 		}
 if(!empty($logoimg_mobile_startup)){
 	$docs->addCustomTag('<link href="'.$logoimg_mobile_startup.'" rel="apple-touch-startup-image">'); 
+	//$docs->addHeadLink($logoimg_mobile_startup, 'apple-touch-startup-image');
 }
 if(!empty($plogoimg_mobile)){
 	$docs->addCustomTag('<link href="'.$logoimg_mobile.'" rel="apple-touch-icon">');
+	//$docs->addHeadLink($opensearch_url, 'apple-touch-icon', array('sizes' => '114x114'));
 	}
 if(!empty($plogoimg_mobile72x72)){
-	$docs->addCustomTag('<link href="'.$logoimg_mobile72x72.'" sizes="72x72" rel="apple-touch-icon">');
+	$docs->addCustomTag('<link href="'.$plogoimg_mobile72x72.'" sizes="72x72" rel="apple-touch-icon">');
+	//$docs->addHeadLink($plogoimg_mobile72x72, 'apple-touch-icon', array('sizes' => '72x72'));
 	}
 if(!empty($plogoimg_mobile114x114)){
 	$docs->addCustomTag('<link href="'.$logoimg_mobile114x114.'" sizes="114x114" rel="apple-touch-icon">');
+	//$docs->addHeadLink($plogoimg_mobile114x114, 'apple-touch-icon', array('sizes' => '114x114'));
 }
 if(!empty($opensearch_url)){
 	$docs->addCustomTag('<link rel="search" type="application/opensearchdescription+xml" title="'.$sitename.'" href="'.$opensearch_url.'">');
+	//$docs->addHeadLink($opensearch_url, 'search', array('type' => 'application/opensearchdescription+xml', 'title' => 'sitename'));
+	
 }
 if(!empty($sitemap_url)){
 	$docs->addCustomTag('<link rel="sitemap" type="application/xml" title="'.$sitename.'" href="'.$sitemap_url.'">');
+	//$docs->addHeadLink($sitemap_url, 'sitemap', array('type' => 'application/xml', 'title' => 'sitename'));
 	$docs->setMetaData('FSOnSitemap', $sitemap_url); }
 
 /*********************[ Pinned website on windows 8/8.1 ]************************/
@@ -770,27 +808,21 @@ if(!empty($backlinks_frontendh)){ $docs->addCustomTag($backlinks_frontendh);}
 
 if(!empty($backlinks_frontendf)){ echo $backlinks_frontendf; }
 
-		if(!empty($linkstantkey)){
-			$docs->setMetaData('linkstant', $linkstantkey);
-			echo '<script src="http://www.linkstant.com/linkstant.js"></script>';
-		}
-/************** [ Mesure d'audiance ]************************/
 
-if(!empty($myAccountGoogleplus)){
-	$docs->addCustomTag('<link rel="publisher" href="https://plus.google.com/'.$myAccountGoogleplus.'">');
-}
+/************** [ Mesure d'audiance ]************************/
 
 
 if(!empty($APPID_webstoreGoogle)){
 	$docs->addCustomTag('<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/'.$APPID_webstoreGoogle.'">');
+	//$docs->addHeadLink($proto_fi.'chrome.google.com/webstore/detail/'.$APPID_webstoreGoogle, 'chrome-webstore-item');
+	
 }
 
 if(!empty($Pingback_url)){
 	$docs->addCustomTag('<link rel="pingback" href="'.$Pingback_url.'">');
+	//$docs->addHeadLink($Pingback_url, 'pingback');
+	//$docs->addHeadLink($href, $relation, 'pingback', $attribs = array());
 }
-if(!empty($viglink_idsite)){
-	echo '<a href="http://www.viglink.com/?vgref='.$viglink_idsite.'">  <img alt="VigLink badge" height="31" src="//www.viglink.com/images/badges/88x31.png" title="Links monetized by VigLink" width="88">
-</a>';
 }
 
 
@@ -803,8 +835,10 @@ j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=
 })(window,document,\'script\',\'dataLayer\',\''.$gtagsmanager.'\');</script>
 <!-- End Google Tag Manager -->');
 	echo '<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id='.$gtagsmanager.'"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript>';
+HTMLHelper::iframe($proto_fi.'www.googletagmanager.com/ns.html?id='.$gtagsmanager, array('style' => 'display:none;visibility:hidden', 'width' => '0', 'height' => '0'));
+'</noscript>
 <!-- End Google Tag Manager (noscript) -->';
 }
+//HTMLHelper::script($proto_fi.'dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js', array('version' => 'auto', 'relative' => true), array('async' => 'async', 'data-cfasync' => 'false', 'data-shr-siteid' => $shareaholicsite_idAPI)); 
 ?>
