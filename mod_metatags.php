@@ -2,9 +2,9 @@
 /**
  * @package	Module for Joomla!
  * @subpackage  mod_metatags
- * @version	4.2
+ * @version	4.3
  * @author	AlexonBalangue.me
- * @copyright	(C) 2012-2016 Alexon Balangue. All rights reserved.
+ * @copyright	(C) 2012-2019 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 
@@ -148,7 +148,7 @@ use Joomla\Registry\Registry;
 		$logoimg_mobile72x72 = $site_root.$params->get('mobile-icons-logo72x72');
 		$logoimg_mobile114x114 = $site_root.$params->get('mobile-icons-logo114x114');
 		$show_mobile_device = $params->get('show_device');
-		$myAffiliateDataapps = $params->get('myAffiliateDataapps-APPLE');
+		$myAffiliateDataapps = $params->get('myAffiliateDataapps-APPLE');		/**Pinned Apple/chrome/others**/		$JacoIcons_1 = $params->get('pinnedaco-icons-1');		$JacoIcons_2 = $params->get('pinnedaco-icons-2');		$JacoIcons_3 = $params->get('pinnedaco-icons-3');		$JacoIcons_4 = $params->get('pinnedaco-icons-4');		$JacoIcons_mask = $params->get('pinnedaco-icons-mask');		$Jaco_manifest = $params->get('pinnedaco-manifest');		$Jaco_them_color = $params->get('pinnedaco-them-color');		
 		/**Pinned Website windows 7**/
 		$JltaskIcons_final = $params->get('pinned7-icons');
 		$JltaskNames_1 = $params->get('pinned7-ltaskNames-1');

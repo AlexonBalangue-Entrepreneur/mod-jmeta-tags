@@ -3,9 +3,9 @@
 /**
  * @package	Module for Joomla!
  * @subpackage  mod_metatags
- * @version	4.2
+ * @version	4.3
  * @author	AlexonBalangue.me
- * @copyright	(C) 2012-2018 Alexon Balangue. All rights reserved.
+ * @copyright	(C) 2012-2019 Alexon Balangue. All rights reserved.
  * @license	GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html
  */
 defined('_JEXEC') or die;
@@ -731,7 +731,7 @@ if(!empty($pinned8_badgebrowser)){
 if(!empty($pinned8_IEconfig)){ 
 	$docs->setMetaData('msapplication-config', $pinned8_IEconfig);  	
 }
-/*********************[ Jump List "Tasks" for Pinned Sites on windows 7 ]************************/
+/*********************[  Pinned Sites on Apple/Chrome/others ]************************/if(!empty($JacoIcons_1) AND !empty($JacoIcons_1)){	$docs->addCustomTag('<link rel="apple-touch-icon" sizes="180x180" href="'.JURI::root().$JacoIcons_1.'">'); }if(!empty($JacoIcons_2) AND !empty($JacoIcons_2)){	$docs->addCustomTag('<link rel="apple-touch-icon" sizes="32x32" href="'.JURI::root().$JacoIcons_2.'">'); }if(!empty($JacoIcons_3) AND !empty($JacoIcons_3)){	$docs->addCustomTag('<link rel="apple-touch-icon" sizes="192x192" href="'.JURI::root().$JacoIcons_3.'">'); }if(!empty($JacoIcons_4) AND !empty($JacoIcons_4)){	$docs->addCustomTag('<link rel="apple-touch-icon" sizes="16x16" href="'.JURI::root().$JacoIcons_4.'">'); }if(!empty($JacoIcons_mask) AND !empty($JacoIcons_mask)){	$docs->addCustomTag('<link rel="mask-icon" href="'.JURI::root().$JacoIcons_mask.'" color="#5bbad5">'); }if(!empty($Jaco_manifest) AND !empty($Jaco_manifest)){	$docs->addCustomTag('<link rel="manifest" href="'.JURI::root().$Jaco_manifest.'">'); }if(!empty($Jaco_them_color) AND !empty($Jaco_them_color)){	$docs->setMetaData('theme-color',$Jaco_them_color); }/*********************[ Jump List "Tasks" for Pinned Sites on windows 7 ]************************/
 $docs->setMetaData('msapplication-task', 'name='.$sitename.';action-uri='.JURI::root().';icon-uri='.JURI::root().$JltaskIcons_final); //final
 if(!empty($JltaskNames_1) AND !empty($JltaskPages_1)){
 	

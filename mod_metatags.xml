@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.8" client="site" method="upgrade">
+<extension type="module" version="3.9" client="site" method="upgrade">
 	<name>mod_metatags</name>
 	<author>Alexon Balangue</author>
-	<creationDate>24 May 2018</creationDate>
-	<copyright>Copyright (C) 2012-2018. All rights reserved.</copyright>
+	<creationDate>19 april 2019</creationDate>
+	<copyright>Copyright (C) 2012-2019. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
 	<authorEmail>contacter@alexonbalangue.me</authorEmail>
 	<authorUrl>www.alexonbalangue.me</authorUrl>
-	<version>4.2</version>
+	<version>4.3</version>
 	<description>MOD_METATAGS_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_metatags">mod_metatags.php</filename>
@@ -1169,7 +1169,7 @@
 					default=""
 					label="SetCookieDomain PIWIK"
 					description="exemple: *.alexonbalangue.me" />	
-			</fieldset>
+			</fieldset>			<fieldset name="mod_meta-pinnedaco" label="Pinned (Apple/Chrome/Other">				<field 					name="pinnedaco-them-color" 					type="color" 					default="#000000" 					label="Color" 					description="" />				<field 					name="pinnedaco-icons-1" 					type="media" 					default="" 					label="IMAGE 180x180" 					description="" 					directory="" />				<field 					name="pinnedaco-icons-2" 					type="media" 					default="" 					label="IMAGE 32x32" 					description="" 					directory="" />				<field 					name="pinnedaco-icons-3" 					type="media" 					default="" 					label="IMAGE 192x192" 					description="" 					directory="" />				<field 					name="pinnedaco-icons-4" 					type="media" 					default="" 					label="IMAGE 16x16" 					description="" 					directory="" />				<field 					name="innedaco-icons-mask" 					type="url" 					default="" 					label="Mask icon (SVG)" 					description="" 					directory="" />				<field 					name="pinnedaco-manifest" 					type="url" 					default="" 					label="Site (manifest)" 					description="" />								</fieldset>			
 			<fieldset name="mod_meta-pinnedwindows8" label="Pinned (Windows 8)">
 				<field 
 					name="pinned8-color" 
